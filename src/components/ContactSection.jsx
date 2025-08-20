@@ -88,6 +88,13 @@ export const ContactSection = () => {
                         netlify-honeypot="bot-field"
                         onSubmit={handleSubmit}
                     >
+                        <input type="hidden" name="form-name" value="contact" />
+                        {/* Honeypot field for spam prevention */}
+                        <p hidden>
+                            <label>
+                                Don’t fill this out: <input name="bot-field" />
+                            </label>
+                        </p>
                         <div>
                             <label htmlFor="name" className='block text-sm font-medium mb-2'>
                                 {" "}
