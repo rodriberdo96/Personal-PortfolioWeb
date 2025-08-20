@@ -80,7 +80,14 @@ export const ContactSection = () => {
                 </div>
                 <div className='bg-card p-6 rounded-lg shadow-xs' onSubmit={handleSubmit}>
                     <h3 className='text-2xl font-semibold mb-6'>Send a Message</h3>
-                    <form className='space-y-6' action="">
+                    <form 
+                        className='space-y-6'
+                        name="contact"
+                        method="POST"
+                        data-netlify="true"
+                        netlify-honeypot="bot-field"
+                        onSubmit={handleSubmit}
+                    >
                         <div>
                             <label htmlFor="name" className='block text-sm font-medium mb-2'>
                                 {" "}
