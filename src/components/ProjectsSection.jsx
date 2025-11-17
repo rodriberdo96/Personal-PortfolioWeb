@@ -15,7 +15,7 @@ const projects = [
         title: 'Workshop Website',
         description: ' A website for a workshop company, providing information and portfolio and clients.',
         image: '/projects/Landing2.png',
-        tags: ['HTML', 'Javascript'],
+        tags: ['HTML', 'Javascript', 'CSS'],
         githubURL: 'https://github.com/rodriberdo96/landing_page',  
         DemoURL: 'https://landingro2.netlify.app/',
     },
@@ -24,10 +24,18 @@ const projects = [
         title: 'Housing Website',
         description: 'A housing website that allows users to search for properties, view details, and contact agents.',
         image: '/projects/HousinLanding3.png',
-        tags: ['HTML', 'Javascript'],
+        tags: ['HTML', 'Javascript', 'CSS'],
         githubURL: 'https://github.com/rodriberdo96/landing_page2',  
         DemoURL: 'https://landingro.netlify.app/',
     },
+        {
+        id: 4,
+        title: 'Interior Design Portfolio',
+        description: 'A portfolio website for an interior designer, showcasing projects and services offered made with Squarespace.',
+        image: '/projects/HaksInterior.png',
+        tags: ['Squarespace','HTML', 'Javascript', 'CSS'],  
+        DemoURL: 'https://www.hakz.ae/',
+    }
 
 ];
 
@@ -55,7 +63,7 @@ export const ProjectsSection = () => {
                         <div className="p-6">
                             <div className="flex flex-wrap gap-2 mb-4">
                                 {project.tags.map((tag) => (
-                                    <span className="text-xs bg-secondary border text-secondary-foreground px-2 py-1 rounded-full">
+                                    <span key={tag} className="text-xs bg-secondary border text-secondary-foreground px-2 py-1 rounded-full">
                                         {tag}
                                     </span>
                                 ))}
@@ -64,19 +72,23 @@ export const ProjectsSection = () => {
                             <p className="text-muted-foreground mb-4 text-sm">{project.description}</p>
                             <div className="flex justify-between items-center">
                                 <div className="flex space-x-3">
-                                    <a href={project.demoURL}
+                                    <a href={project.DemoURL || project.demoURL}
                                         className="text-foreground/80 hover:text-primary transition-colors duration-300"
                                         target="_blank"
                                         rel="noopener noreferrer"
                                     > 
                                         <ExternalLink size ={20}/>
                                     </a>
-                                    <a href={project.githubURL} 
-                                        className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                                    target="_blank" 
-                                    >
-                                        <Github size ={20}/>
-                                    </a>
+
+                                    {project.githubURL && (
+                                        <a href={project.githubURL} 
+                                            className="text-foreground/80 hover:text-primary transition-colors duration-300"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >
+                                            <Github size ={20}/>
+                                        </a>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -87,6 +99,7 @@ export const ProjectsSection = () => {
                 <a href="https://github.com/rodriberdo96" 
                 className="cosmic-button w-fit flex items-center mx-auto gap-2"
                 target="_blank" 
+                rel="noopener noreferrer"
                 >
                     Check My Github <ArrowRight size={16}/>
                 </a>
