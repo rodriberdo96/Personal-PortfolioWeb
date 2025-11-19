@@ -12,7 +12,7 @@ const projects = [
     {
         id: 2,
         title: 'System Course Website',
-        description: 'A responsive website for a system course, showcasing course details and resources.',
+        description: 'A responsive website for a system course, showcasing course details and resources. This demo application was created independently for self-development and technical growth',
         image: '/projects/System_Course.png',
         tags: ['HTML', 'bootstrap', 'JavaScript'],
         githubURL: 'https://github.com/rodriberdo96/Pagina-de-cursos',  
@@ -21,7 +21,7 @@ const projects = [
     {
         id: 3,
         title: 'Workshop Website',
-        description: ' A website for a workshop company, providing information and portfolio and clients.',
+        description: ' A website for a workshop company, providing information and portfolio and clients.This demo application was created independently for self-development and technical growth',
         image: '/projects/Landing2.png',
         tags: ['HTML', 'Javascript', 'CSS'],
         githubURL: 'https://github.com/rodriberdo96/landing_page',  
@@ -30,7 +30,7 @@ const projects = [
     {
         id: 4,
         title: 'Housing Website',
-        description: 'A housing website that allows users to search for properties, view details, and contact agents.',
+        description: 'A housing website that allows users to search for properties, view details, and contact agents. This demo application was created independently for self-development and technical growth',
         image: '/projects/HousinLanding3.png',
         tags: ['HTML', 'Javascript', 'CSS'],
         githubURL: 'https://github.com/rodriberdo96/landing_page2',  
