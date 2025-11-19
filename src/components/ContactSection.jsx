@@ -50,9 +50,9 @@ export const ContactSection = () => {
                             <div className="p-3 rounded-full bg-primary/10 ">
                                 <Phone className=" h-6 w-6 text-primary" /> {" "} 
                             </div>
-                            <div >
+                            <div className='ml-1'>
                                 <h4 className="font-medium ml-9">Phone</h4>
-                                <a href="tel:+541134450448" className="text-muted-foreground hover:text-primary transition-colors ml-2">
+                                <a href="tel:+541134450448" className="text-muted-foreground hover:text-primary transition-colors ">
                                     +54 9 11 3445-0448
                                 </a>
                             </div>
@@ -61,22 +61,29 @@ export const ContactSection = () => {
                             <div className="p-3 rounded-full bg-primary/10 ">
                                 <MapPin className=" h-6 w-6 text-primary" /> {" "} 
                             </div>
-                            <div >
-                                <h4 className="font-medium"> Location </h4>
+                            <div className='ml-3'>
+                                <h4 className="font-medium "> Location </h4>
                                 <a  className="text-muted-foreground hover:text-primary transition-colors">
                                     Buenos Aires, Argentina
                                 </a>
                             </div>
                         </div>
                     </div>
-                    <div className='pt-8'>
-                        <h4 className='font-medium mb-4'>Connect With Me</h4>
-                        <div className='flex space-x-4 justify-center'>
-                            <a href="https://www.linkedin.com/in/rodrigoberdomas/" target ="_blank">
-                                <Linkedin />
-                            </a>
-                        </div>
-                    </div>
+<div className="flex items-start space-x-4 ">
+    <div className="p-3 rounded-full bg-primary/10">
+        <Linkedin className="h-6 w-6 text-primary" />
+    </div>
+    <div>
+        <h4 className="font-medium mb-1 ml-5">Connect With Me</h4>
+        <a 
+            href="https://www.linkedin.com/in/rodrigoberdomas/" 
+            target="_blank"
+            className="text-muted-foreground hover:text-primary transition-colors"
+        >
+            <Linkedin className="h-6 w-6 ml-14"/>
+        </a>
+    </div>
+</div>
                 </div>
                 <div className='bg-card p-6 rounded-lg shadow-xs' onSubmit={handleSubmit}>
                     <h3 className='text-2xl font-semibold mb-6'>Send a Message</h3>
