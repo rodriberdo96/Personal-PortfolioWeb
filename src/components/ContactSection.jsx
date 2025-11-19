@@ -30,60 +30,59 @@ export const ContactSection = () => {
                 I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Feel free to reach out via email or connect with me on social media.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <div className="space-y-8 ">
-                    <h3 className="text-2xl font-semibold mb-6">
-                        Contact Information
-                    </h3>
-                    <div className="space-y-6 justify-center">
-                        <div className="flex items-start space-x-4">
-                            <div className="p-3 rounded-full bg-primary/10 ">
-                                <Mail className="h-6 w-6 text-primary" /> {" "} 
+                <div className="space-y-8">
+                    <h3 className="text-2xl font-semibold mr-12">Contact Information</h3>
+                    <div className="space-y-6 ml-12">
+                        <div className="flex gap-3 items-center">
+                            <div className="p-3 rounded-full bg-primary/10 w-12 h-12 flex items-center justify-center flex-shrink-0">
+                                <Mail className="h-6 w-6 text-primary" /> 
                             </div>
-                            <div >
-                                <h4 className="font-medium"> Email </h4>
-                                <a href="mailto:rodriberdomas@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
+                            <div>
+                                <h4 className="font-medium">Email</h4>
+                                <a href="mailto:rodriberdomas@gmail.com" className="text-muted-foreground hover:text-primary transition-colors text-sm">
                                     rodriberdomas@gmail.com
                                 </a>
                             </div>
                         </div>
-                        <div className="flex items-start space-x-4">
-                            <div className="p-3 rounded-full bg-primary/10 ">
-                                <Phone className=" h-6 w-6 text-primary" /> {" "} 
+                        <div className="flex gap-3 items-center">
+                            <div className="p-3 rounded-full bg-primary/10 w-12 h-12 flex items-center justify-center flex-shrink-0">
+                                <Phone className="h-6 w-6 text-primary" /> 
                             </div>
-                            <div className='ml-1'>
-                                <h4 className="font-medium ml-9">Phone</h4>
-                                <a href="tel:+541134450448" className="text-muted-foreground hover:text-primary transition-colors ">
+                            <div className='ml-5'>
+                                <h4 className="font-medium ">Phone</h4>
+                                <a href="tel:+541134450448" className="text-muted-foreground hover:text-primary transition-colors text-sm">
                                     +54 9 11 3445-0448
                                 </a>
                             </div>
                         </div>
-                        <div className="flex items-start space-x-4">
-                            <div className="p-3 rounded-full bg-primary/10 ">
-                                <MapPin className=" h-6 w-6 text-primary" /> {" "} 
+                        <div className="flex gap-3 items-center">
+                            <div className="p-3 rounded-full bg-primary/10 w-12 h-12 flex items-center justify-center flex-shrink-0">
+                                <MapPin className="h-6 w-6 text-primary" /> 
                             </div>
-                            <div className='ml-3'>
-                                <h4 className="font-medium "> Location </h4>
-                                <a  className="text-muted-foreground hover:text-primary transition-colors">
+                            <div className='ml-2'>
+                                <h4 className="font-medium">Location</h4>
+                                <p className="text-muted-foreground text-sm">
                                     Buenos Aires, Argentina
+                                </p>
+                            </div>
+                        </div>
+                        <div className="flex gap-3 items-center">
+                            <div className="p-3 rounded-full bg-primary/10 w-12 h-12 flex items-center justify-center flex-shrink-0">
+                                <Linkedin className="h-6 w-6 text-primary" />
+                            </div>
+                            <div className='ml-2'>
+                                <h4 className="font-medium ml-2">Connect With Me</h4>
+                                <a 
+                                    href="https://www.linkedin.com/in/rodrigoberdomas/" 
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-muted-foreground hover:text-primary transition-colors text-sm inline-block"
+                                >
+                                    <Linkedin className="inline-block mr-2 h-4 w-4"/> 
                                 </a>
                             </div>
                         </div>
                     </div>
-<div className="flex items-start space-x-4 ">
-    <div className="p-3 rounded-full bg-primary/10">
-        <Linkedin className="h-6 w-6 text-primary" />
-    </div>
-    <div>
-        <h4 className="font-medium mb-1 ml-5">Connect With Me</h4>
-        <a 
-            href="https://www.linkedin.com/in/rodrigoberdomas/" 
-            target="_blank"
-            className="text-muted-foreground hover:text-primary transition-colors"
-        >
-            <Linkedin className="h-6 w-6 ml-14"/>
-        </a>
-    </div>
-</div>
                 </div>
                 <div className='bg-card p-6 rounded-lg shadow-xs' onSubmit={handleSubmit}>
                     <h3 className='text-2xl font-semibold mb-6'>Send a Message</h3>

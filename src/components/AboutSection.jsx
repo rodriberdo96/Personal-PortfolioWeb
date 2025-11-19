@@ -9,7 +9,12 @@ export const AboutSection = () => {
                     About <span className="text-primary">Me</span>
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                    <div className="space-y-6">
+                    <div className="space-y-6 ">
+                        <img 
+                            src="/FotoPersonal.jpeg" 
+                            alt="Rodri Berdomas" 
+                            className="w-35 h-35 object-cover rounded-full shadow-xl border border-primary/20 mx-auto"
+                        />
                         <h3 className="text-2xl font-semibold"> Passionate Web Developer </h3>
 
                         <p className="text-muted-foreground">With 2 years of experience in web development, I specialize in creating responsive, accesible, 
@@ -27,7 +32,7 @@ export const AboutSection = () => {
                                 {" "}
                                 Get in Touch
                             </a>
-                            <a href="/_Rodrigo Berdomas CV English (9).pdf" download className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 tansition-colors duration-300">
+                            <a href="/_Rodrigo Berdomas CV English (8).pdf" download className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 tansition-colors duration-300">
                                 {" "}
                                 Download CV
                             </a>

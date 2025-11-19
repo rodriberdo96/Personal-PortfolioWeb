@@ -41,7 +41,7 @@ export const ThemeToggle = () => {
         <button
             onClick={toggleTheme}
             className={cn(
-                "fixed max-sm:hidden top-2 p-2 right-5 z-50 rounded-full transition-all duration-300 focus:outline-hidden",
+                "fixed max-sm:hidden top-3 p-2 right-5 z-50 rounded-full transition-all duration-300 focus:outline-hidden",
                     isScrolled
                         ? "top-[8px] bg-background/80 shadow-xs backdrop-blur-md p-2"
                         : "top-[15px] bg-transparent p-2"

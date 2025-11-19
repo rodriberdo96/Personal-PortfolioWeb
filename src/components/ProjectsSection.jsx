@@ -1,8 +1,16 @@
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
 
-const projects = [
+const projects = [        
     {
         id: 1,
+        title: 'Interior Design Portfolio',
+        description: 'A portfolio website for an interior designer, showcasing projects and services offered made with Squarespace.',
+        image: '/projects/HaksInterior.png',
+        tags: ['Squarespace','HTML', 'Javascript', 'CSS'],  
+        DemoURL: 'https://www.hakz.ae/',
+    },
+    {
+        id: 2,
         title: 'System Course Website',
         description: 'A responsive website for a system course, showcasing course details and resources.',
         image: '/projects/System_Course.png',
@@ -11,7 +19,7 @@ const projects = [
         DemoURL: 'https://system-course.netlify.app/',
     },
     {
-        id: 2,
+        id: 3,
         title: 'Workshop Website',
         description: ' A website for a workshop company, providing information and portfolio and clients.',
         image: '/projects/Landing2.png',
@@ -20,23 +28,14 @@ const projects = [
         DemoURL: 'https://landingro2.netlify.app/',
     },
     {
-        id: 3,
+        id: 4,
         title: 'Housing Website',
         description: 'A housing website that allows users to search for properties, view details, and contact agents.',
         image: '/projects/HousinLanding3.png',
         tags: ['HTML', 'Javascript', 'CSS'],
         githubURL: 'https://github.com/rodriberdo96/landing_page2',  
         DemoURL: 'https://landingro.netlify.app/',
-    },
-        {
-        id: 4,
-        title: 'Interior Design Portfolio',
-        description: 'A portfolio website for an interior designer, showcasing projects and services offered made with Squarespace.',
-        image: '/projects/HaksInterior.png',
-        tags: ['Squarespace','HTML', 'Javascript', 'CSS'],  
-        DemoURL: 'https://www.hakz.ae/',
     }
-
 ];
 
 
