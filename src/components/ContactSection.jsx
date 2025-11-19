@@ -92,7 +92,7 @@ export const ContactSection = () => {
                         method="POST"
                         data-netlify="true"
                         netlify-honeypot="bot-field"
-                        onSubmit={handleSubmit}
+                        onSubmit={handleSubmit} netlify
                     >
                         <input type="hidden" name="form-name" value="contact" />
                         {/* Honeypot field for spam prevention */}
