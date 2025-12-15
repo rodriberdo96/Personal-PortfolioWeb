@@ -9,8 +9,18 @@ const projects = [
         tags: ['Squarespace','HTML', 'Javascript', 'CSS'],  
         DemoURL: 'https://www.hakz.ae/',
     },
+
     {
         id: 2,
+        title: 'Food Delivery Web App',
+        description: 'Full-stack web application demonstrating end-to-end development: REST API design, authentication with JWT, database modeling with MongoDB, and a responsive React frontend with Stripe payment integration. This demo application was created independently for self-development and technical growth',
+        image: '/projects/food_del_webapp.png',
+        tags: ['HTML', 'bootstrap', 'JavaScript'],
+        githubURL: 'https://github.com/rodriberdo96/Food_Delivery_App',  
+        DemoURL: 'https://fooddelapprodri.netlify.app/',
+    },
+    {
+        id: 3,
         title: 'System Course Website',
         description: 'A responsive website for a system course, showcasing course details and resources. This demo application was created independently for self-development and technical growth',
         image: '/projects/System_Course.png',
@@ -19,7 +29,7 @@ const projects = [
         DemoURL: 'https://system-course.netlify.app/',
     },
     {
-        id: 3,
+        id: 4,
         title: 'Workshop Website',
         description: ' A website for a workshop company, providing information and portfolio and clients.This demo application was created independently for self-development and technical growth',
         image: '/projects/Landing2.png',
@@ -28,7 +38,7 @@ const projects = [
         DemoURL: 'https://landingro2.netlify.app/',
     },
     {
-        id: 4,
+        id: 5,
         title: 'Housing Website',
         description: 'A housing website that allows users to search for properties, view details, and contact agents. This demo application was created independently for self-development and technical growth',
         image: '/projects/HousinLanding3.png',
