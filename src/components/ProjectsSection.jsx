@@ -6,7 +6,7 @@ const projects = [
         title: 'Food Delivery Web App',
         description: 'A full-stack food delivery web app built with React and Node.js, featuring authentication, cart management, order processing, and Stripe payment integration. This demo application was created independently for self-development and technical growth',
         image: '/projects/food_del_webapp.png',
-        tags: ['HTML', 'bootstrap', 'JavaScript'],
+        tags: ['React', 'Vite', 'JavaScript', 'Node.js', 'Express.js', 'MongoDB', 'REST API', 'Stripe', 'JWT'],
         githubURL: 'https://github.com/rodriberdo96/Food_Delivery_App',  
         DemoURL: 'https://fooddelapprodri.netlify.app/',
     },
