@@ -1,8 +1,17 @@
 import { ArrowRight, ExternalLink, Github } from "lucide-react";
 
 const projects = [        
-    {
+        {
         id: 1,
+        title: 'Food Delivery Web App',
+        description: 'A full-stack food delivery web app built with React and Node.js, featuring authentication, cart management, order processing, and Stripe payment integration. This demo application was created independently for self-development and technical growth',
+        image: '/projects/food_del_webapp.png',
+        tags: ['HTML', 'bootstrap', 'JavaScript'],
+        githubURL: 'https://github.com/rodriberdo96/Food_Delivery_App',  
+        DemoURL: 'https://fooddelapprodri.netlify.app/',
+    },
+    {
+        id: 2,
         title: 'Interior Design Portfolio',
         description: 'A portfolio website for an interior designer, showcasing projects and services offered made with Squarespace.',
         image: '/projects/HaksInterior.png',
@@ -10,15 +19,7 @@ const projects = [
         DemoURL: 'https://www.hakz.ae/',
     },
 
-    {
-        id: 2,
-        title: 'Food Delivery Web App',
-        description: 'Full-stack web application demonstrating end-to-end development: REST API design, authentication with JWT, database modeling with MongoDB, and a responsive React frontend with Stripe payment integration. This demo application was created independently for self-development and technical growth',
-        image: '/projects/food_del_webapp.png',
-        tags: ['HTML', 'bootstrap', 'JavaScript'],
-        githubURL: 'https://github.com/rodriberdo96/Food_Delivery_App',  
-        DemoURL: 'https://fooddelapprodri.netlify.app/',
-    },
+
     {
         id: 3,
         title: 'System Course Website',
