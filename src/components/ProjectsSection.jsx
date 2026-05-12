@@ -8,15 +8,15 @@ const projects = [
         image: '/projects/food_del_webapp.png',
         tags: ['React', 'Vite', 'JavaScript', 'Node.js', 'Express.js', 'MongoDB', 'REST API', 'Stripe', 'JWT'],
         githubURL: 'https://github.com/rodriberdo96/Food_Delivery_App',  
-        DemoURL: 'https://fooddelapprodri.netlify.app/',
+        demoURL: 'https://fooddelapprodri.netlify.app/',
     },
     {
         id: 2,
         title: 'Interior Design Portfolio',
         description: 'A portfolio website for an interior designer, showcasing projects and services offered made with Squarespace.',
         image: '/projects/HaksInterior.png',
-        tags: ['Squarespace','HTML', 'Javascript', 'CSS'],  
-        DemoURL: 'https://www.hakz.ae/',
+        tags: ['Squarespace','HTML', 'JavaScript', 'CSS'],  
+        demoURL: 'https://www.hakz.ae/',
     },
 
 
@@ -25,27 +25,27 @@ const projects = [
         title: 'System Course Website',
         description: 'A responsive website for a system course, showcasing course details and resources. This demo application was created independently for self-development and technical growth',
         image: '/projects/System_Course.png',
-        tags: ['HTML', 'bootstrap', 'JavaScript'],
+        tags: ['HTML', 'Bootstrap', 'JavaScript'],
         githubURL: 'https://github.com/rodriberdo96/Pagina-de-cursos',  
-        DemoURL: 'https://system-course.netlify.app/',
+        demoURL: 'https://system-course.netlify.app/',
     },
     {
         id: 4,
         title: 'Workshop Website',
         description: ' A website for a workshop company, providing information and portfolio and clients.This demo application was created independently for self-development and technical growth',
         image: '/projects/Landing2.png',
-        tags: ['HTML', 'Javascript', 'CSS'],
+        tags: ['HTML', 'JavaScript', 'CSS'],
         githubURL: 'https://github.com/rodriberdo96/landing_page',  
-        DemoURL: 'https://landingro2.netlify.app/',
+        demoURL: 'https://landingro2.netlify.app/',
     },
     {
         id: 5,
         title: 'Housing Website',
         description: 'A housing website that allows users to search for properties, view details, and contact agents. This demo application was created independently for self-development and technical growth',
         image: '/projects/HousinLanding3.png',
-        tags: ['HTML', 'Javascript', 'CSS'],
+        tags: ['HTML', 'JavaScript', 'CSS'],
         githubURL: 'https://github.com/rodriberdo96/landing_page2',  
-        DemoURL: 'https://landingro.netlify.app/',
+        demoURL: 'https://landingro.netlify.app/',
     }
 ];
 
@@ -54,7 +54,7 @@ export const ProjectsSection = () => {
     return <section id="projects" className="py-24 px-4 relative">
         <div className="container mx-auto max-w-5xl">
             {" "}
-            <h2 className="text-3xl md:4xl font-bold mb-4 text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
                 Featured <span className="text-primary">Projects</span>
             </h2>
             <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
@@ -62,11 +62,12 @@ export const ProjectsSection = () => {
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {projects.map((project, key) => (
-                    <div key={key} className="group bg-card overflow-hidden rounded-lg shadow-xs card-hover">
+                {projects.map((project) => (
+                    <div key={project.id} className="group bg-card overflow-hidden rounded-lg shadow-xs card-hover">
                         <div className="h-48 overflow-hidden">
                             <img src={project.image} 
-                            alt={project.title} 
+                            alt={`${project.title} preview`} 
+                            loading="lazy"
                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
                             />
                         </div>
@@ -82,12 +83,13 @@ export const ProjectsSection = () => {
                             <p className="text-muted-foreground mb-4 text-sm">{project.description}</p>
                             <div className="flex justify-between items-center">
                                 <div className="flex space-x-3">
-                                    <a href={project.DemoURL || project.demoURL}
+                                    <a href={project.demoURL}
                                         className="text-foreground/80 hover:text-primary transition-colors duration-300"
                                         target="_blank"
                                         rel="noopener noreferrer"
+                                        aria-label={`Open ${project.title} live demo`}
                                     > 
-                                        <ExternalLink size ={20}/>
+                                        <ExternalLink size ={20} aria-hidden="true"/>
                                     </a>
 
                                     {project.githubURL && (
@@ -95,8 +97,9 @@ export const ProjectsSection = () => {
                                             className="text-foreground/80 hover:text-primary transition-colors duration-300"
                                             target="_blank"
                                             rel="noopener noreferrer"
+                                            aria-label={`Open ${project.title} source code`}
                                         >
-                                            <Github size ={20}/>
+                                            <Github size ={20} aria-hidden="true"/>
                                         </a>
                                     )}
                                 </div>
@@ -111,7 +114,7 @@ export const ProjectsSection = () => {
                 target="_blank" 
                 rel="noopener noreferrer"
                 >
-                    Check My Github <ArrowRight size={16}/>
+                    Check My Github <ArrowRight size={16} aria-hidden="true"/>
                 </a>
             </div>
         </div>

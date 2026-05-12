@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { cn } from '../lib/utils';
 
 const skills = [
     //Frontend
-    { name: 'HTML/CSS', level: '90', category: 'rontend' },
+    { name: 'HTML/CSS', level: '90', category: 'frontend' },
     { name: 'JavaScript', level: '85', category: 'frontend' },
     { name: 'React', level: '85', category: 'frontend' },
     { name: 'Vue.js', level: '70', category: 'frontend' },
@@ -29,7 +29,7 @@ const skills = [
 
 const categories =["all", "frontend", "backend", "tools"];
 export const SkillsSection = () => {
-    const [activeCategory, SetActivecategory] = useState("all");
+    const [activeCategory, setActiveCategory] = useState("all");
 
     const filteredSkills = skills.filter((skill)=> activeCategory === "all" || skill.category === activeCategory);  
     return (
@@ -39,33 +39,39 @@ export const SkillsSection = () => {
                     My <span className="text-primary">Skills</span>
                 </h2>
                 <div className="flex flex-wrap justify-center mb-12 gap-4">
-                    {categories.map((category, key) => (
+                    {categories.map((category) => (
                         <button
-                            key={key}
-                            onClick={() => SetActivecategory(category)}
+                            key={category}
+                            onClick={() => setActiveCategory(category)}
                             className={ cn('px-5 py-2 rounded-full transition-colors duration-300 capitalize',
                                 activeCategory === category
                                     ? 'bg-primary text-primary-foreground'
-                                    : 'bg-secondary/70 text-foreground hover:bd-psecondary'
+                                    : 'bg-secondary/70 text-foreground hover:bg-secondary'
                             )}
+                            aria-pressed={activeCategory === category}
                         >
                             {category.charAt(0).toUpperCase() + category.slice(1)}
                         </button>
                     ))}
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {filteredSkills.map((skill, key) => (
-                        <div key={key} className="bg-card p-6 rounded-lg shadow-xs card-hover">
+                    {filteredSkills.map((skill) => (
+                        <div key={skill.name} className="bg-card p-6 rounded-lg shadow-xs card-hover">
                             <div className="text-left mb-4">
                                 <h3 className="text-lg font-semibold">{skill.name}</h3>                                                            </div>
                         <div className="w-full bg-secondary/50 rounded-full h-2 overflow-hidden">
                         <div
                             className="bg-primary h-2 rounded-full origin-left animate-[grow_1.5s_ease-out]"
+                            role="progressbar"
+                            aria-label={`${skill.name} proficiency`}
+                            aria-valuemin="0"
+                            aria-valuemax="100"
+                            aria-valuenow={Number(skill.level)}
                             style={{ width: `${skill.level}%` }}
                         />
                         </div>
                             <div className="text-right mt-1 ">
-                                <span className="text-sm text-muted-foreground">{skill.level}</span>% 
+                                <span className="text-sm text-muted-foreground">{skill.level}%</span>
                             </div>
                         </div>
                     ))}
