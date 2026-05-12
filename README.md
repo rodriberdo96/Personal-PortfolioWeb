@@ -1,14 +1,70 @@
-# React + Vite
+# Rodrigo Berdomas Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive personal portfolio built with React, Vite, and Tailwind CSS. The site highlights Rodrigo Berdomas' web development projects, skills, contact details, and downloadable CV.
 
-Currently, two official plugins are available:
+**Live site:** <https://rodriberdomasportfolio.netlify.app/>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- Responsive single-page layout with smooth anchor navigation.
+- Light and dark themes with persisted user preference.
+- Animated star-field background with reduced-motion support.
+- Project cards with live demo and source-code links.
+- Netlify-ready contact form with honeypot spam protection.
+- SEO and social sharing metadata in `index.html`.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# Personal-PortfolioWeb
-website: https://rodriberdomasportfolio.netlify.app/
+## Tech Stack
+
+- React 19
+- Vite 7
+- Tailwind CSS 4
+- React Router
+- Lucide React icons
+- Radix UI Toast
+
+## Getting Started
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
+
+```bash
+npm run dev
+```
+
+Create a production build:
+
+```bash
+npm run build
+```
+
+Preview the production build locally:
+
+```bash
+npm run preview
+```
+
+Run lint checks:
+
+```bash
+npm run lint
+```
+
+## Project Structure
+
+```text
+src/
+  components/   Reusable portfolio sections and UI primitives
+  hooks/        Toast state hook
+  lib/          Shared utilities
+  pages/        Route-level pages
+public/         Static images, project screenshots, and CV
+```
+
+## Deployment Notes
+
+The contact form is configured for Netlify Forms. Keep the hidden `contact` form in `index.html` so Netlify can detect the form during deploy builds.
