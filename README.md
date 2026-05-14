@@ -8,10 +8,9 @@ A premium AI-startup-inspired portfolio for Rodrigo Berdomás, positioned around
 
 - Dark-first single-page portfolio with smooth anchor navigation and responsive mobile menu.
 - AI/automation-forward hero with animated role rotation, workflow terminal visual, availability badge, and recruiter CTAs.
-- Centralized portfolio content in `src/data/portfolio.js` for easier project, skill, service, and experience updates.
+- Centralized portfolio content in `src/data/portfolio.js` for easier project, skill, service, and portfolio updates.
 - Featured AI project case studies for Make.com real estate chatbot automation and Relevance AI agent/tool orchestration.
 - Categorized skill panels for frontend, backend, Automation & AI, and tools, plus animated tech marquee.
-- Modern experience timeline focused on software engineering, automation, AI-assisted development, and technical problem solving.
 - Premium contact section with Netlify Forms support, honeypot spam protection, and opportunity-focused messaging.
 - SEO/Open Graph metadata tuned for AI-powered full stack and automation engineering.
 - Reduced-motion-aware CSS animations, reveal transitions, animated grid backgrounds, glass cards, and glowing accents.
@@ -64,7 +63,7 @@ npm run lint
 ```text
 src/
   components/   Portfolio sections, reveal utilities, and UI primitives
-  data/         Profile, nav, skills, services, projects, and experience content
+  data/         Profile, nav, skills, services, and project content
   hooks/        Toast state hook
   lib/          Shared utilities
   pages/        Route-level pages

@@ -3,7 +3,6 @@ export const navItems = [
   { name: "About", href: "#about" },
   { name: "Skills", href: "#skills" },
   { name: "Work", href: "#projects" },
-  { name: "Experience", href: "#experience" },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -137,13 +136,13 @@ export const projects = [
     githubURL: "https://github.com/rodriberdo96/Food_Delivery_App",
   },
   {
-    id: "ai-website-builder",
-    title: "AI Website Builder",
-    kicker: "AI-assisted product concept",
+    id: "interior-design-portfolio",
+    title: "Interior Design Portfolio",
+    kicker: "Squarespace client website",
     description:
-      "AI-enhanced website generation concept exploring prompt-driven structure, fast landing page assembly, and startup-style presentation systems.",
+      "Elegant Squarespace website for an interior design brand, focused on refined visual storytelling, service presentation, project credibility, and a polished client-facing experience.",
     image: "/projects/HaksInterior.png",
-    tags: ["AI", "React", "Prompt UX", "TailwindCSS"],
+    tags: ["Squarespace", "Web Design", "Client Website", "Responsive UX"],
     demoURL: "https://www.hakz.ae/",
   },
   {
@@ -165,33 +164,5 @@ export const projects = [
     image: "/projects/HousinLanding3.png",
     tags: ["Monorepo", "React", "Node.js", "APIs", "Architecture"],
     githubURL: "https://github.com/rodriberdo96",
-  },
-];
-
-export const experience = [
-  {
-    role: "Full Stack & Automation Engineer",
-    period: "2024 — Present",
-    focus: "AI workflows, API integrations, React products",
-    description:
-      "Building portfolio-ready systems that combine React interfaces, Node/API foundations, Make.com/n8n-style orchestration, webhooks, and AI-assisted workflows.",
-    bullets: ["Designed automation flows for lead qualification and conversational handoff", "Built modern responsive product interfaces with React and TailwindCSS", "Connected API-first logic for commerce, contact, and workflow use cases"],
-  },
-  {
-    role: "Frontend / Full Stack Developer",
-    period: "2022 — 2024",
-    focus: "Web apps, landing pages, backend foundations",
-    description:
-      "Delivered responsive websites and full-stack foundations for commerce, education, real estate, and client-facing business experiences.",
-    bullets: ["Created React and JavaScript interfaces optimized for mobile users", "Implemented authentication, cart, payments, and data-driven flows", "Improved project storytelling with stronger UX and conversion paths"],
-  },
-  {
-    role: "Operations & Client-Facing Background",
-    period: "Earlier experience",
-    focus: "Communication, systems thinking, execution",
-    description:
-      "Non-tech experience kept intentionally concise: it strengthens client communication, practical problem solving, and the ability to understand operational workflows.",
-    bullets: ["Translated business needs into clear execution plans", "Developed strong ownership and stakeholder communication habits"],
-    compact: true,
   },
 ];
