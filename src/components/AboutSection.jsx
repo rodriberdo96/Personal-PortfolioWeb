@@ -1,89 +1,62 @@
-import { Code, User, Briefcase } from "lucide-react";
+import { Bot, Braces, Cloud, Workflow } from "lucide-react";
+import { profile, services } from "../data/portfolio";
+import { SectionReveal } from "./SectionReveal";
+
+const serviceIcons = [Braces, Workflow, Bot, Cloud];
+const principles = ["clarify the business workflow", "design the API and UI contract", "ship responsive product UX", "automate the repetitive handoffs"];
 
 export const AboutSection = () => {
-    return (
-        <section id="about" className="py-24 px-4 relative">
-            {" "}
-            <div className="container max-w-5xl mx-auto ">
-                <h2 className="text-3xl  md:text-4xl font-bold text-center mb-12 ">
-                    About <span className="text-primary">Me</span>
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                    <div className="space-y-6 ">
-                        <img 
-                            src="/FotoPersonal.jpeg" 
-                            alt="Rodri Berdomas" 
-                            className="w-35 h-35 object-cover rounded-full shadow-xl border border-primary/20 mx-auto"
-                        />
-                        <h3 className="text-2xl font-semibold"> Passionate Web Developer </h3>
-
-                        <p className="text-muted-foreground">With 2 years of experience in web development, I specialize in creating responsive, accesible, 
-                            and performant web applications. 
-                            My journey began with a fascination for technology and a desire to build interactive experiences.
-
-                        </p>
-
-                        <p className="text-muted-foreground">
-                            I have a strong foundation in HTML, CSS, JavaScript, React, and Node, and I'm always eager to learn new technologies and frameworks.
-                            My goal is to create user-friendly interfaces that not only look great but also provide a seamless user experience.
-                        </p>
-                        <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
-                            <a href="#contact" className="cosmic-button">
-                                {" "}
-                                Get in Touch
-                            </a>
-                            <a href="/Rodrigo Berdomas CV English (2).pdf" download className="px-6 py-2 rounded-full border border-primary text-primary hover:bg-primary/10 tansition-colors duration-300">
-                                {" "}
-                                Download CV
-                            </a>
-                        </div>
-                    </div>
-                    <div className="grid grid-cols-1 gap-6">
-                        <div className="gradient-border p-6 card-hover">
-                            <div className="flex items-start gap-4">
-                                <div className="p-3 rounded-full bg-primary/10">
-                                    <Code className="h-6 w-6 text-primary"/>
-                                </div>
-                                <div className="text-left">
-                                    <h4 className="font-semibold text-lg">Web Development</h4>
-                                    <p className="text-muted-foreground">
-                                        Builds modern, responsive websites that combine clean code, 
-                                        intuitive design, and smooth functionality to deliver engaging user experiences
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="gradient-border p-6 card-hover">
-                            <div className="flex items-start gap-4">
-                                <div className="p-3 rounded-full bg-primary/10">
-                                    <User className="h-6 w-6 text-primary"/>
-                                </div>
-                                <div className="text-left">
-                                    <h4 className="font-semibold text-lg">UI / UX Design</h4>
-                                    <p className="text-muted-foreground">
-                                        Creates intuitive, 
-                                        visually appealing interfaces that enhance usability and keep users engaged from the first click.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="gradient-border p-6 card-hover">
-                            <div className="flex items-start gap-4">
-                                <div className="p-3 rounded-full bg-primary/10">
-                                    <Briefcase className="h-6 w-6 text-primary"/>
-                                </div>
-                                <div className="text-left">
-                                    <h4 className="font-semibold text-lg">Performance Optimization</h4>
-                                    <p className="text-muted-foreground">
-                                        Builds fast-loading, 
-                                        efficient websites by improving code, assets, and architecture for a smooth user experience.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+  return (
+    <section id="about" className="relative px-4 py-24">
+      <div className="container mx-auto max-w-6xl">
+        <div className="grid items-start gap-12 lg:grid-cols-[0.85fr_1.15fr]">
+          <SectionReveal className="sticky top-28 text-left">
+            <p className="section-eyebrow">About Rodrigo</p>
+            <h2 className="section-title mt-3">Full stack delivery with an automation-first mindset.</h2>
+            <p className="mt-6 text-lg leading-8 text-muted-foreground">
+              I build cloud-ready product experiences that connect polished interfaces with practical backend logic, APIs, and automation systems. My focus is not only making software look premium — it is making it useful, scalable, and ready to plug into real business workflows.
+            </p>
+            <p className="mt-4 leading-7 text-muted-foreground">
+              My stack centers on React, Node.js, REST APIs, TailwindCSS, and AI-assisted development, with automation workflows powered by Make.com, n8n concepts, webhooks, JSON payloads, and AI tools. I enjoy working where product UX meets integrations, agents, and operational leverage.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <a href="#contact" className="cosmic-button inline-flex justify-center">Start an AI workflow</a>
+              <a href={profile.cv} download className="secondary-button inline-flex justify-center">Download CV</a>
             </div>
-        </section>
-    );
-}
+          </SectionReveal>
+
+          <div className="grid gap-5">
+            {services.map((service, index) => {
+              const Icon = serviceIcons[index] ?? Braces;
+              return (
+                <SectionReveal key={service.title} as="article" delay={index * 90} className="spotlight-card group p-6 text-left">
+                  <div className="flex gap-5">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary ring-1 ring-primary/15 transition-transform duration-300 group-hover:scale-110">
+                      <Icon className="h-6 w-6" aria-hidden="true" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold">{service.title}</h3>
+                      <p className="mt-3 leading-7 text-muted-foreground">{service.description}</p>
+                    </div>
+                  </div>
+                </SectionReveal>
+              );
+            })}
+
+            <SectionReveal className="rounded-3xl border border-primary/20 bg-linear-to-br from-primary/15 via-card/80 to-cyan-400/10 p-6 text-left shadow-sm backdrop-blur">
+              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-primary">How I build</p>
+              <div className="mt-5 grid gap-4 sm:grid-cols-4">
+                {principles.map((step, index) => (
+                  <div key={step} className="rounded-2xl bg-background/70 p-4 ring-1 ring-border">
+                    <span className="text-sm font-black text-primary">0{index + 1}</span>
+                    <p className="mt-2 text-sm font-semibold leading-6">{step}</p>
+                  </div>
+                ))}
+              </div>
+            </SectionReveal>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
