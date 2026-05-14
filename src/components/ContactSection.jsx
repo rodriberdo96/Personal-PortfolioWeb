@@ -1,9 +1,19 @@
-import { Linkedin, Mail, MapPin, Phone, Send } from "lucide-react";
+import { Github, Linkedin, Mail, MapPin, Phone, Send, Sparkles } from "lucide-react";
 import { useState } from "react";
+import { profile } from "../data/portfolio";
 import { useToast } from "../hooks/use-toast";
 import { cn } from "../lib/utils";
+import { SectionReveal } from "./SectionReveal";
 
 const encodeFormData = (formData) => new URLSearchParams(formData).toString();
+
+const contactCards = [
+  { label: "Email", value: profile.email, href: `mailto:${profile.email}`, icon: Mail },
+  { label: "Phone", value: profile.phone, href: profile.phoneHref, icon: Phone },
+  { label: "Location", value: profile.location, icon: MapPin },
+];
+
+const projectTypes = ["AI workflow", "Full-stack app", "Automation system", "API integration"];
 
 export const ContactSection = () => {
   const { toast } = useToast();
@@ -35,7 +45,7 @@ export const ContactSection = () => {
     } catch {
       toast({
         title: "Message not sent",
-        description: "Please email me directly at rodriberdomas@gmail.com.",
+        description: `Please email me directly at ${profile.email}.`,
         variant: "destructive",
       });
     } finally {
@@ -44,83 +54,66 @@ export const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="py-24 px-4 relative bg-secondary/30">
-      <div className="container mx-auto max-w-5xl">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-          Get In <span className="text-primary">Touch</span>
-        </h2>
-        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          I&apos;m always open to discussing new projects, creative ideas, or opportunities to be part of your vision. Feel free to reach out via email or connect with me on social media.
-        </p>
+    <section id="contact" className="relative px-4 py-24">
+      <div className="container mx-auto max-w-6xl">
+        <SectionReveal className="overflow-hidden rounded-[2rem] border border-primary/20 bg-card/80 shadow-2xl shadow-primary/5 backdrop-blur">
+          <div className="grid lg:grid-cols-[0.9fr_1.1fr]">
+            <div className="relative overflow-hidden bg-linear-to-br from-primary/20 via-card to-cyan-400/10 p-8 text-left lg:p-10">
+              <div className="absolute inset-0 grid-overlay opacity-35" />
+              <div className="relative">
+                <p className="section-eyebrow">Contact</p>
+                <h2 className="mt-3 text-4xl font-black tracking-tight md:text-5xl">Open to freelance, remote and AI automation opportunities.</h2>
+                <p className="mt-5 leading-7 text-muted-foreground">
+                  Send me the workflow, SaaS idea, integration challenge, or product interface you want to build. I&apos;ll respond with a practical path for turning it into a polished, production-ready system.
+                </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div className="space-y-8 text-left">
-            <h3 className="text-2xl font-semibold">Contact Information</h3>
-            <div className="space-y-6">
-              <div className="flex gap-3 items-center">
-                <div className="p-3 rounded-full bg-primary/10 w-12 h-12 flex items-center justify-center flex-shrink-0">
-                  <Mail className="h-6 w-6 text-primary" aria-hidden="true" />
+                <div className="mt-6 flex flex-wrap gap-2">
+                  {projectTypes.map((type) => (
+                    <span key={type} className="rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-bold text-primary">
+                      {type}
+                    </span>
+                  ))}
                 </div>
-                <div>
-                  <h4 className="font-medium">Email</h4>
-                  <a href="mailto:rodriberdomas@gmail.com" className="text-muted-foreground hover:text-primary transition-colors text-sm">
-                    rodriberdomas@gmail.com
+
+                <div className="mt-8 grid gap-4">
+                  {contactCards.map((card) => {
+                    const ContactIcon = card.icon;
+
+                    return (
+                      <div key={card.label} className="flex items-center gap-4 rounded-2xl border border-border bg-background/70 p-4">
+                        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                          <ContactIcon className="h-5 w-5" aria-hidden="true" />
+                        </div>
+                        <div>
+                          <p className="text-sm text-muted-foreground">{card.label}</p>
+                          {card.href ? (
+                            <a href={card.href} className="font-semibold hover:text-primary">
+                              {card.value}
+                            </a>
+                          ) : (
+                            <p className="font-semibold">{card.value}</p>
+                          )}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                <div className="mt-8 flex gap-3">
+                  <a href={profile.github} target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="Open GitHub profile">
+                    <Github className="h-5 w-5" aria-hidden="true" />
                   </a>
-                </div>
-              </div>
-
-              <div className="flex gap-3 items-center">
-                <div className="p-3 rounded-full bg-primary/10 w-12 h-12 flex items-center justify-center flex-shrink-0">
-                  <Phone className="h-6 w-6 text-primary" aria-hidden="true" />
-                </div>
-                <div>
-                  <h4 className="font-medium">Phone</h4>
-                  <a href="tel:+5491134450448" className="text-muted-foreground hover:text-primary transition-colors text-sm">
-                    +54 9 11 3445-0448
+                  <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="Open LinkedIn profile">
+                    <Linkedin className="h-5 w-5" aria-hidden="true" />
                   </a>
-                </div>
-              </div>
-
-              <div className="flex gap-3 items-center">
-                <div className="p-3 rounded-full bg-primary/10 w-12 h-12 flex items-center justify-center flex-shrink-0">
-                  <MapPin className="h-6 w-6 text-primary" aria-hidden="true" />
-                </div>
-                <div>
-                  <h4 className="font-medium">Location</h4>
-                  <p className="text-muted-foreground text-sm">Buenos Aires, Argentina</p>
-                </div>
-              </div>
-
-              <div className="flex gap-3 items-center">
-                <div className="p-3 rounded-full bg-primary/10 w-12 h-12 flex items-center justify-center flex-shrink-0">
-                  <Linkedin className="h-6 w-6 text-primary" aria-hidden="true" />
-                </div>
-                <div>
-                  <h4 className="font-medium">Connect With Me</h4>
-                  <a
-                    href="https://www.linkedin.com/in/rodrigoberdomas/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-muted-foreground hover:text-primary transition-colors text-sm inline-flex items-center gap-2"
-                  >
-                    LinkedIn
-                    <Linkedin className="h-4 w-4" aria-hidden="true" />
+                  <a href={`mailto:${profile.email}`} className="social-icon" aria-label="Send email">
+                    <Mail className="h-5 w-5" aria-hidden="true" />
                   </a>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div className="bg-card p-6 rounded-lg shadow-xs">
-            <h3 className="text-2xl font-semibold mb-6">Send a Message</h3>
-            <form
-              className="space-y-6 text-left"
-              name="contact"
-              method="POST"
-              data-netlify="true"
-              netlify-honeypot="bot-field"
-              onSubmit={handleSubmit}
-            >
+            <form className="space-y-5 p-8 text-left lg:p-10" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" onSubmit={handleSubmit}>
               <input type="hidden" name="form-name" value="contact" />
               <p className="hidden">
                 <label htmlFor="bot-field">
@@ -128,62 +121,45 @@ export const ContactSection = () => {
                 </label>
               </p>
 
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium mb-2">
-                  Your Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  autoComplete="name"
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary"
-                  placeholder="Your name"
-                />
+              <div className="rounded-2xl border border-border bg-background/60 p-4 text-sm text-muted-foreground">
+                <Sparkles className="mb-2 h-5 w-5 text-primary" aria-hidden="true" />
+                Best fit: AI workflow builds, automation systems, API integrations, React dashboards, and startup landing pages.
               </div>
 
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium mb-2">
-                  Your Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  autoComplete="email"
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary"
-                  placeholder="you@example.com"
-                />
-              </div>
+              <FormField id="name" label="Your name" autoComplete="name" placeholder="Jane Founder" />
+              <FormField id="email" label="Email address" type="email" autoComplete="email" placeholder="you@example.com" />
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium mb-2">
-                  Your Message
+                <label htmlFor="message" className="mb-2 block text-sm font-semibold">
+                  Project details
                 </label>
                 <textarea
                   id="message"
                   name="message"
                   required
-                  rows="5"
-                  className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary resize-none"
-                  placeholder="Hello, I would like to talk about..."
+                  rows="6"
+                  className="form-input resize-none"
+                  placeholder="Tell me about the workflow, API, app, agent, timeline, and success metric you have in mind..."
                 />
               </div>
 
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className={cn("cosmic-button w-full flex items-center justify-center gap-2", isSubmitting && "opacity-70 cursor-not-allowed")}
-              >
-                {isSubmitting ? "Sending..." : "Send Message"}
-                <Send size={16} aria-hidden="true" />
+              <button type="submit" disabled={isSubmitting} className={cn("cosmic-button w-full justify-center gap-2", isSubmitting && "cursor-not-allowed opacity-70")}>
+                {isSubmitting ? "Sending..." : "Send project brief"}
+                <Send className="h-4 w-4" aria-hidden="true" />
               </button>
             </form>
           </div>
-        </div>
+        </SectionReveal>
       </div>
     </section>
   );
 };
+
+const FormField = ({ id, label, type = "text", autoComplete, placeholder }) => (
+  <div>
+    <label htmlFor={id} className="mb-2 block text-sm font-semibold">
+      {label}
+    </label>
+    <input id={id} name={id} type={type} required className="form-input" autoComplete={autoComplete} placeholder={placeholder} />
+  </div>
+);

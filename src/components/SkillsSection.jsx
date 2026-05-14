@@ -1,82 +1,56 @@
-import { useState } from 'react';
-import { cn } from '../lib/utils';
+import { Bot, Code, Database, Wrench } from "lucide-react";
+import { marqueeSkills, skillGroups } from "../data/portfolio";
+import { SectionReveal } from "./SectionReveal";
 
-const skills = [
-    //Frontend
-    { name: 'HTML/CSS', level: '90', category: 'frontend' },
-    { name: 'JavaScript', level: '85', category: 'frontend' },
-    { name: 'React', level: '85', category: 'frontend' },
-    { name: 'Vue.js', level: '70', category: 'frontend' },
-    { name: 'Angular', level: '60', category: 'frontend' },
-    { name: 'Bootstrap', level: '80', category: 'frontend' },
-    { name: 'Tailwind CSS', level: '80', category: 'frontend' },
-    { name: 'Next.js', level: '75', category: 'frontend' },
+const icons = [Code, Database, Bot, Wrench];
 
-    //Backend
-    { name: 'Node.js', level: '80', category: 'backend' },
-    { name: 'Express.js', level: '75', category: 'backend' },
-    { name: 'MySQL', level: '80', category: 'backend' },
-    { name: 'PostgreSQL', level: '75', category: 'backend' },
-    { name: 'MongoDB', level: '80', category: 'backend' },
-    { name: 'SQLite', level: '60', category: 'backend' },
-
-    //Tools
-    { name: 'Git/Github', level: '85', category: 'tools'},
-    { name: 'Docker', level: '75', category: 'tools' },
-    { name: 'Figma', level: '80', category: 'tools' },
-    { name: 'Visual Studio Code', level: '80', category: 'tools' },
-];
-
-const categories =["all", "frontend", "backend", "tools"];
 export const SkillsSection = () => {
-    const [activeCategory, setActiveCategory] = useState("all");
+  return (
+    <section id="skills" className="relative overflow-hidden bg-secondary/25 px-4 py-24">
+      <div className="absolute inset-x-0 top-1/2 h-px bg-linear-to-r from-transparent via-primary/30 to-transparent" />
+      <div className="container mx-auto max-w-6xl">
+        <SectionReveal className="mx-auto max-w-3xl text-center">
+          <p className="section-eyebrow">Capabilities</p>
+          <h2 className="section-title mt-3">A modern stack for AI-enhanced product execution.</h2>
+          <p className="mt-5 text-muted-foreground">
+            Frontend polish, backend foundations, workflow automation, AI agent tooling, and deployment workflows — organized around shipping useful systems quickly.
+          </p>
+        </SectionReveal>
 
-    const filteredSkills = skills.filter((skill)=> activeCategory === "all" || skill.category === activeCategory);  
-    return (
-        <section id="skills" className="py-24 px-4 relative bg-secondary/30">
-            <div className="container mx-auto max-w-5xl">
-                <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-                    My <span className="text-primary">Skills</span>
-                </h2>
-                <div className="flex flex-wrap justify-center mb-12 gap-4">
-                    {categories.map((category) => (
-                        <button
-                            key={category}
-                            onClick={() => setActiveCategory(category)}
-                            className={ cn('px-5 py-2 rounded-full transition-colors duration-300 capitalize',
-                                activeCategory === category
-                                    ? 'bg-primary text-primary-foreground'
-                                    : 'bg-secondary/70 text-foreground hover:bg-secondary'
-                            )}
-                            aria-pressed={activeCategory === category}
-                        >
-                            {category.charAt(0).toUpperCase() + category.slice(1)}
-                        </button>
-                    ))}
+        <div className="mt-10 overflow-hidden rounded-full border border-border bg-card/60 py-3 backdrop-blur">
+          <div className="marquee-track">
+            {[...marqueeSkills, ...marqueeSkills].map((skill, index) => (
+              <span key={`${skill}-${index}`} className="mx-3 inline-flex rounded-full border border-primary/20 bg-primary/10 px-4 py-2 text-sm font-bold text-primary">
+                {skill}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          {skillGroups.map((group, index) => {
+            const Icon = icons[index] ?? Code;
+            return (
+              <SectionReveal key={group.title} as="article" delay={index * 100} className="spotlight-card group p-6 text-left">
+                <div className="mb-5 flex items-center gap-3">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-primary transition-transform group-hover:rotate-6 group-hover:scale-110">
+                    <Icon className="h-5 w-5" aria-hidden="true" />
+                  </div>
+                  <h3 className="text-xl font-bold">{group.title}</h3>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {filteredSkills.map((skill) => (
-                        <div key={skill.name} className="bg-card p-6 rounded-lg shadow-xs card-hover">
-                            <div className="text-left mb-4">
-                                <h3 className="text-lg font-semibold">{skill.name}</h3>                                                            </div>
-                        <div className="w-full bg-secondary/50 rounded-full h-2 overflow-hidden">
-                        <div
-                            className="bg-primary h-2 rounded-full origin-left animate-[grow_1.5s_ease-out]"
-                            role="progressbar"
-                            aria-label={`${skill.name} proficiency`}
-                            aria-valuemin="0"
-                            aria-valuemax="100"
-                            aria-valuenow={Number(skill.level)}
-                            style={{ width: `${skill.level}%` }}
-                        />
-                        </div>
-                            <div className="text-right mt-1 ">
-                                <span className="text-sm text-muted-foreground">{skill.level}%</span>
-                            </div>
-                        </div>
-                    ))}
+                <p className="mb-5 text-sm leading-6 text-muted-foreground">{group.summary}</p>
+                <div className="flex flex-wrap gap-3">
+                  {group.skills.map((skill) => (
+                    <span key={skill} className="skill-badge">
+                      {skill}
+                    </span>
+                  ))}
                 </div>
-            </div>
-        </section>
-    )
-}
+              </SectionReveal>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+};

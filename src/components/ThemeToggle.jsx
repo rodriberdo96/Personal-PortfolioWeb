@@ -12,7 +12,7 @@ const getInitialTheme = () => {
     return storedTheme === "dark";
   }
 
-  return window.matchMedia("(prefers-color-scheme: dark)").matches;
+  return true;
 };
 
 export const ThemeToggle = () => {

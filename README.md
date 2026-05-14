@@ -1,17 +1,19 @@
-# Rodrigo Berdomas Portfolio
+# Rodrigo Berdomás Portfolio
 
-A responsive personal portfolio built with React, Vite, and Tailwind CSS. The site highlights Rodrigo Berdomas' web development projects, skills, contact details, and downloadable CV.
+A premium AI-startup-inspired portfolio for Rodrigo Berdomás, positioned around AI-powered full stack development, automation engineering, workflow orchestration, API integrations, and modern React product interfaces.
 
 **Live site:** <https://rodriberdomasportfolio.netlify.app/>
 
 ## Features
 
-- Responsive single-page layout with smooth anchor navigation.
-- Light and dark themes with persisted user preference.
-- Animated star-field background with reduced-motion support.
-- Project cards with live demo and source-code links.
-- Netlify-ready contact form with honeypot spam protection.
-- SEO and social sharing metadata in `index.html`.
+- Dark-first single-page portfolio with smooth anchor navigation and responsive mobile menu.
+- AI/automation-forward hero with animated role rotation, workflow terminal visual, availability badge, and recruiter CTAs.
+- Centralized portfolio content in `src/data/portfolio.js` for easier project, skill, service, and portfolio updates.
+- Featured AI project case studies for Make.com real estate chatbot automation and Relevance AI agent/tool orchestration.
+- Categorized skill panels for frontend, backend, Automation & AI, and tools, plus animated tech marquee.
+- Premium contact section with Netlify Forms support, honeypot spam protection, and opportunity-focused messaging.
+- SEO/Open Graph metadata tuned for AI-powered full stack and automation engineering.
+- Reduced-motion-aware CSS animations, reveal transitions, animated grid backgrounds, glass cards, and glowing accents.
 
 ## Tech Stack
 
@@ -21,6 +23,8 @@ A responsive personal portfolio built with React, Vite, and Tailwind CSS. The si
 - React Router
 - Lucide React icons
 - Radix UI Toast
+
+> Note: Framer Motion was requested for animation polish, but the package registry returned `403 Forbidden` for `framer-motion` in this environment. The current implementation uses performant CSS and IntersectionObserver-powered reveal animations instead.
 
 ## Getting Started
 
@@ -58,7 +62,8 @@ npm run lint
 
 ```text
 src/
-  components/   Reusable portfolio sections and UI primitives
+  components/   Portfolio sections, reveal utilities, and UI primitives
+  data/         Profile, nav, skills, services, and project content
   hooks/        Toast state hook
   lib/          Shared utilities
   pages/        Route-level pages
