@@ -1,11 +1,14 @@
 import { Menu, X } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { navItems, profile } from "../data/portfolio";
 import { cn } from "../lib/utils";
 
 export const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuButtonRef = useRef(null);
+  const menuContainerRef = useRef(null);
+  const wasMenuOpenRef = useRef(false);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 10);
@@ -19,6 +22,34 @@ export const NavBar = () => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "";
     return () => {
       document.body.style.overflow = "";
+    };
+  }, [isMenuOpen]);
+
+  useEffect(() => {
+    if (!isMenuOpen) {
+      if (wasMenuOpenRef.current) {
+        menuButtonRef.current?.focus();
+      }
+      wasMenuOpenRef.current = false;
+      return undefined;
+    }
+
+    wasMenuOpenRef.current = true;
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setIsMenuOpen(false);
+      }
+    };
+
+    const firstFocusableElement = menuContainerRef.current?.querySelector(
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    );
+    firstFocusableElement?.focus();
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
     };
   }, [isMenuOpen]);
 
@@ -52,6 +83,7 @@ export const NavBar = () => {
 
         <button
           type="button"
+          ref={menuButtonRef}
           onClick={() => setIsMenuOpen((prev) => !prev)}
           className="z-50 rounded-full p-2 text-foreground transition-colors hover:bg-primary/10 md:hidden"
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -64,6 +96,7 @@ export const NavBar = () => {
 
       <div
         id="mobile-menu"
+        ref={menuContainerRef}
         className={cn(
           "fixed inset-0 z-30 flex flex-col items-center justify-center bg-background/95 backdrop-blur-xl transition-opacity duration-300 md:hidden",
           isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
