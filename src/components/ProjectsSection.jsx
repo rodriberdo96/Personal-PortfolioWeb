@@ -3,8 +3,12 @@ import { profile, projects } from "../data/portfolio";
 import { SectionReveal } from "./SectionReveal";
 
 export const ProjectsSection = () => {
-  const featuredProjects = projects.slice(0, 2);
-  const otherProjects = projects.slice(2);
+  const isFeaturedProject = (project) =>
+    project?.type && Array.isArray(project?.highlights) && Array.isArray(project?.visualNodes);
+
+  const featuredProjects = projects.filter(isFeaturedProject).slice(0, 2);
+  const featuredProjectIds = new Set(featuredProjects.map((project) => project.id));
+  const otherProjects = projects.filter((project) => !featuredProjectIds.has(project.id));
 
   return (
     <section id="projects" className="relative px-4 py-24">
