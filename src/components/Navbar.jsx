@@ -31,7 +31,7 @@ export const NavBar = () => {
         menuButtonRef.current?.focus();
       }
       wasMenuOpenRef.current = false;
-      return undefined;
+      return;
     }
 
     wasMenuOpenRef.current = true;
@@ -43,7 +43,7 @@ export const NavBar = () => {
     };
 
     const firstFocusableElement = menuContainerRef.current?.querySelector(
-      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
     );
     firstFocusableElement?.focus();
 
