@@ -147,13 +147,14 @@ export const projects = [
   },
   {
     id: "personal-portfolio",
-    title: "Personal Portfolio",
+    title: "Creative Agency Landing Page",
     kicker: "Brand and conversion system",
     description:
-      "A premium developer portfolio designed to reposition technical work around full-stack delivery, automation systems, and AI-powered engineering workflows.",
+      "Creative services landing page designed and developed with a modern responsive layout, smooth navigation, and visually engaging sections for services, portfolio, testimonials, and contact. Focused on clean UI design, user experience, and professional brand presentation using modern frontend development practices.",
     image: "/projects/Landing2.png",
     tags: ["React", "Vite", "TailwindCSS", "Netlify"],
-    githubURL: "https://github.com/rodriberdo96",
+    demoURL: "https://6a0cb8e7d1fc3200081abaca--landingro2.netlify.app/",
+    githubURL: "https://github.com/rodriberdo96/landing_page",
   },
   {
     id: "monorepo-ecommerce",
