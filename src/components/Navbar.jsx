@@ -62,21 +62,20 @@ export const NavBar = () => {
         </button>
       </div>
 
-      <div
-        id="mobile-menu"
-        className={cn(
-          "fixed inset-0 z-30 flex flex-col items-center justify-center bg-background/95 backdrop-blur-xl transition-opacity duration-300 md:hidden",
-          isMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-        )}
-      >
-        <div className="flex flex-col items-center gap-6 text-3xl font-black">
-          {navItems.map((item) => (
-            <a key={item.href} href={item.href} className="transition-colors hover:text-primary" onClick={() => setIsMenuOpen(false)}>
-              {item.name}
-            </a>
-          ))}
+      {isMenuOpen && (
+        <div
+          id="mobile-menu"
+          className="fixed inset-0 z-30 flex flex-col items-center justify-center bg-background/95 backdrop-blur-xl transition-opacity duration-300 md:hidden"
+        >
+          <div className="flex flex-col items-center gap-6 text-3xl font-black">
+            {navItems.map((item) => (
+              <a key={item.href} href={item.href} className="transition-colors hover:text-primary" onClick={() => setIsMenuOpen(false)}>
+                {item.name}
+              </a>
+            ))}
+          </div>
         </div>
-      </div>
+      )}
     </nav>
   );
 };
