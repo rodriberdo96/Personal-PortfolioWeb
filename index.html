@@ -3,6 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (() => {
+        try {
+          const storedTheme = window.localStorage.getItem("theme");
+          const isDarkMode = storedTheme ? storedTheme === "dark" : true;
+          document.documentElement.classList.toggle("dark", isDarkMode);
+        } catch {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
     <meta
       name="description"
       content="Portfolio of Rodrigo Berdomás, an AI-powered Full Stack & Automation Engineer building React products, Node.js APIs, AI workflows, Make.com/n8n automations, and agent-driven integrations."
