@@ -1,57 +1,57 @@
-import React, { useEffect, useState } from 'react';
-import { Moon, Sun } from 'lucide-react';
-import { cn } from '../lib/utils';
+import { useEffect, useState } from "react";
+import { Moon, Sun } from "lucide-react";
+import { cn } from "../lib/utils";
+
+const getInitialTheme = () => {
+  if (typeof window === "undefined") {
+    return true;
+  }
+
+  const storedTheme = window.localStorage.getItem("theme");
+  if (storedTheme) {
+    return storedTheme === "dark";
+  }
+
+  return true;
+};
 
 export const ThemeToggle = () => {
-    const [isDarkMode, setIsDarkMode] = useState(true);
-    const [isScrolled, setIsScrolled] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(getInitialTheme);
+  const [isScrolled, setIsScrolled] = useState(false);
 
-    useEffect(() => {
-        const storedTheme = localStorage.getItem('theme');
-        if (storedTheme === 'dark') {
-            document.documentElement.classList.add('dark');
-            setIsDarkMode(false);
-        } else {
-            document.documentElement.classList.remove('dark');
-            setIsDarkMode(true);
-        }
-    }, []);
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", isDarkMode);
+    window.localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+  }, [isDarkMode]);
 
-    useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 10);
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
-
-    const toggleTheme = () => {
-        if (isDarkMode) {
-            document.documentElement.classList.remove('dark');
-            localStorage.setItem('theme', 'light');
-            setIsDarkMode(false);
-        } else {
-            document.documentElement.classList.add('dark');
-            localStorage.setItem('theme', 'dark');
-            setIsDarkMode(true);
-        }
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
     };
 
-    return (
-        <button
-            onClick={toggleTheme}
-            className={cn(
-                "fixed max-sm:hidden top-3 p-2 right-5 z-50 rounded-full transition-all duration-300 focus:outline-hidden",
-                    isScrolled
-                        ? "top-[8px] bg-background/80 shadow-xs backdrop-blur-md p-2"
-                        : "top-[15px] bg-transparent p-2"
-            )}
-        >
-            {isDarkMode ? (
-                <Sun className="h-6 w-6 text-yellow-300" />
-            ) : (
-                <Moon className="h-6 w-6 text-blue-900" />
-            )}
-        </button>
-    );
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  return (
+    <button
+      type="button"
+      onClick={() => setIsDarkMode((current) => !current)}
+      aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+      title={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
+      className={cn(
+        "fixed right-5 z-50 rounded-full p-2 transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary max-sm:hidden",
+        isScrolled
+          ? "top-[8px] bg-background/80 shadow-xs backdrop-blur-md"
+          : "top-[15px] bg-transparent"
+      )}
+    >
+      {isDarkMode ? (
+        <Sun className="h-6 w-6 text-yellow-300" aria-hidden="true" />
+      ) : (
+        <Moon className="h-6 w-6 text-blue-900" aria-hidden="true" />
+      )}
+    </button>
+  );
 };
