@@ -1,46 +1,83 @@
 import { ArrowDown, ArrowRight, Github, Linkedin, Mail, MapPin, Sparkles, Workflow, Zap } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
 import { impactStats, profile } from "../data/portfolio";
+import { ParallaxTilt } from "./ParallaxTilt";
+import { TextScramble } from "./TextScramble";
+import { TypewriterRole } from "./TypewriterRole";
 
 export const HeroSection = () => {
+  const { t, lang } = useLanguage();
+
+  const getStatLabel = (index, defaultLabel) => {
+    if (lang === "es") {
+      const esLabels = [
+        "desarrollo full stack",
+        "lógica de automatización",
+        "integraciones y sistemas"
+      ];
+      return esLabels[index] || defaultLabel;
+    }
+    return defaultLabel;
+  };
+
+  const getRoleTranslation = (role) => {
+    if (lang === "es") {
+      const map = {
+        "Full Stack Developer": "Desarrollador Full Stack",
+        "Automation Engineer": "Ingeniero de Automatización",
+        "Workflow Builder": "Creador de Flujos",
+        "React Developer": "Desarrollador React"
+      };
+      return map[role] || role;
+    }
+    return role;
+  };
+
+  const translatedRoles = profile.roles.map(getRoleTranslation);
+
   return (
     <section id="hero" className="relative isolate flex min-h-screen items-center overflow-hidden px-4 pb-20 pt-32 sm:pt-36">
-      <div className="absolute inset-x-0 top-16 -z-10 mx-auto h-96 max-w-6xl rounded-full bg-primary/25 blur-3xl" />
-      <div className="absolute right-0 top-28 -z-10 h-80 w-80 rounded-full bg-cyan-400/10 blur-3xl" />
+      {/* Subtle animated blobs */}
+      <div className="absolute inset-x-0 top-16 -z-10 mx-auto h-96 max-w-6xl rounded-full bg-primary/15 blur-3xl animate-float" />
+      <div className="absolute right-0 top-28 -z-10 h-80 w-80 rounded-full bg-primary/8 blur-3xl" style={{ animationDelay: "2s", animationDuration: "8s" }} />
+
+      {/* Animated horizontal draw line */}
+      <div className="absolute left-0 top-1/2 -z-10 h-px w-full overflow-hidden">
+        <div className="h-full bg-linear-to-r from-transparent via-primary/20 to-transparent" style={{ animation: "draw-line 3s ease-out forwards" }} />
+      </div>
 
       <div className="container mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
         <div className="text-left">
           <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/25 bg-card/70 px-4 py-2 text-sm text-muted-foreground shadow-sm backdrop-blur">
             <Sparkles className="h-4 w-4 text-primary" aria-hidden="true" />
-            Open to freelance, remote and AI automation opportunities
+            {t.hero.status}
           </div>
 
-          <p className="mb-4 text-sm font-black uppercase tracking-[0.35em] text-primary">{profile.name}</p>
+          <p className="mb-4 text-sm font-black uppercase tracking-[0.35em] text-primary">
+            <TextScramble text={profile.name} speed={25} />
+          </p>
           <h1 className="max-w-4xl text-5xl font-black leading-tight tracking-tight md:text-7xl">
-            AI-powered engineering for <span className="text-gradient">products, workflows and agents.</span>
+            {t.hero.titlePre} <span className="text-gradient">{t.hero.titleGradient}</span>
           </h1>
 
           <div className="mt-5 flex flex-wrap items-center gap-3 text-lg font-bold text-foreground md:text-2xl">
-            <span>I build as a</span>
-            <span className="role-rotator" aria-label={profile.roles.join(", ")}>
-              <span className="role-track">
-                {profile.roles.map((role) => (
-                  <span key={role}>{role}</span>
-                ))}
-              </span>
+            <span>{t.hero.rolePre}</span>
+            <span className="inline-flex items-center rounded-full border border-primary/20 bg-primary/10 px-4 py-1 text-primary">
+              <TypewriterRole roles={translatedRoles} />
             </span>
           </div>
 
           <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground md:text-xl">
-            I&apos;m an AI-powered Full Stack & Automation Engineer from {profile.location}, creating React interfaces, Node.js foundations, REST API integrations, Make.com/n8n workflows, and AI agent experiences for modern teams.
+            {t.hero.description}
           </p>
 
           <div className="mt-8 flex flex-col gap-4 sm:flex-row">
             <a href="#projects" className="cosmic-button group inline-flex items-center justify-center gap-2">
-              Explore AI projects
+              {t.hero.ctaExplore}
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden="true" />
             </a>
             <a href="#contact" className="secondary-button inline-flex items-center justify-center gap-2">
-              Build an automation
+              {t.hero.ctaBuild}
               <Zap className="h-4 w-4" aria-hidden="true" />
             </a>
           </div>
@@ -66,45 +103,47 @@ export const HeroSection = () => {
         </div>
 
         <div className="relative mx-auto w-full max-w-lg lg:max-w-none">
-          <div className="absolute -inset-4 rounded-[2rem] bg-linear-to-br from-primary/35 via-cyan-400/10 to-emerald-400/20 blur-2xl" />
-          <div className="glass-card relative overflow-hidden p-5 shadow-2xl">
-            <div className="absolute inset-0 opacity-40 grid-overlay" />
-            <div className="relative rounded-[1.5rem] border border-border bg-background/80 p-4 text-left">
-              <div className="flex items-center justify-between border-b border-border pb-4">
-                <div className="flex gap-2">
-                  <span className="h-3 w-3 rounded-full bg-red-400" />
-                  <span className="h-3 w-3 rounded-full bg-amber-300" />
-                  <span className="h-3 w-3 rounded-full bg-emerald-400" />
+          <div className="absolute -inset-4 rounded-[2rem] bg-linear-to-br from-primary/25 via-primary/8 to-primary/15 blur-2xl" />
+          <ParallaxTilt className="relative" intensity={4}>
+            <div className="glass-card relative overflow-hidden p-5 shadow-2xl breathe-glow">
+              <div className="absolute inset-0 opacity-40 grid-overlay" />
+              <div className="relative rounded-[1.5rem] border border-border bg-background/80 p-4 text-left">
+                <div className="flex items-center justify-between border-b border-border pb-4">
+                  <div className="flex gap-2">
+                    <span className="h-3 w-3 rounded-full bg-red-400" />
+                    <span className="h-3 w-3 rounded-full bg-amber-300" />
+                    <span className="h-3 w-3 rounded-full bg-emerald-400" />
+                  </div>
+                  <span className="text-xs font-semibold text-muted-foreground font-mono">workflow.agent.ts</span>
                 </div>
-                <span className="text-xs font-semibold text-muted-foreground">workflow.agent.ts</span>
+
+                <div className="mt-5 space-y-3 font-mono text-sm leading-7 text-muted-foreground">
+                  <p><span className="text-primary">const</span> engineer = &quot;Rodrigo Berdomás&quot;;</p>
+                  <p><span className="text-primary">stack</span>.connect([&quot;React&quot;, &quot;Node&quot;, &quot;APIs&quot;]);</p>
+                  <p><span className="text-primary">automation</span>.orchestrate(&quot;Make.com&quot;, &quot;n8n&quot;);</p>
+                  <p><span className="text-primary">workflow</span>.run(&quot;qualify leads&quot;, &quot;trigger actions&quot;);</p>
+                </div>
+
+                <div className="mt-6 grid gap-3 sm:grid-cols-5">
+                  {["Lead", "Webhook", "Logic", "API", "CRM"].map((node, index) => (
+                    <div key={node} className="workflow-node" style={{ animationDelay: `${index * 140}ms` }}>
+                      <Workflow className="h-4 w-4" aria-hidden="true" />
+                      <span>{node}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
 
-              <div className="mt-5 space-y-3 font-mono text-sm leading-7 text-muted-foreground">
-                <p><span className="text-primary">const</span> engineer = &quot;Rodrigo Berdomás&quot;;</p>
-                <p><span className="text-primary">stack</span>.connect([&quot;React&quot;, &quot;Node&quot;, &quot;APIs&quot;]);</p>
-                <p><span className="text-primary">automation</span>.orchestrate(&quot;Make.com&quot;, &quot;n8n&quot;);</p>
-                <p><span className="text-primary">agent</span>.run(&quot;qualify leads&quot;, &quot;trigger actions&quot;);</p>
-              </div>
-
-              <div className="mt-6 grid gap-3 sm:grid-cols-5">
-                {["Lead", "Webhook", "AI", "API", "CRM"].map((node, index) => (
-                  <div key={node} className="workflow-node" style={{ animationDelay: `${index * 140}ms` }}>
-                    <Workflow className="h-4 w-4" aria-hidden="true" />
-                    <span>{node}</span>
+              <div className="relative mt-5 grid grid-cols-3 gap-3">
+                {impactStats.map((stat, index) => (
+                  <div key={stat.label} className="rounded-2xl border border-border bg-background/75 p-4 text-center backdrop-blur">
+                    <p className="text-2xl font-black text-primary">{stat.value}</p>
+                    <p className="mt-1 text-xs leading-5 text-muted-foreground">{getStatLabel(index, stat.label)}</p>
                   </div>
                 ))}
               </div>
             </div>
-
-            <div className="relative mt-5 grid grid-cols-3 gap-3">
-              {impactStats.map((stat) => (
-                <div key={stat.label} className="rounded-2xl border border-border bg-background/75 p-4 text-center backdrop-blur">
-                  <p className="text-2xl font-black text-primary">{stat.value}</p>
-                  <p className="mt-1 text-xs leading-5 text-muted-foreground">{stat.label}</p>
-                </div>
-              ))}
-            </div>
-          </div>
+          </ParallaxTilt>
         </div>
       </div>
 

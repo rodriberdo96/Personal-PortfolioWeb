@@ -9,12 +9,12 @@ export const navItems = [
 export const profile = {
   name: "Rodrigo Berdomás",
   shortName: "Rodri Berdomás",
-  role: "AI-Powered Full Stack & Automation Engineer",
-  roles: ["Full Stack Developer", "Automation Engineer", "AI Workflow Builder", "React Developer"],
+  role: "Full Stack & Automation Engineer",
+  roles: ["Full Stack Developer", "Automation Engineer", "Workflow Builder", "React Developer"],
   location: "Buenos Aires, Argentina",
   email: "rodriberdomas@gmail.com",
   phone: "+54 9 11 3445-0448",
-  phoneHref: "tel:+5491134450448",
+  phoneHref: "https://wa.me/5491134450448?text=Hi%20Rodrigo,%20saw%20your%20portfolio%20and%20wanted%20to%20reach%20out!",
   cv: "/Rodrigo Berdomas CV English (2).pdf",
   avatar: "/FotoPersonal.jpeg",
   linkedin: "https://www.linkedin.com/in/rodrigoberdomas/",
@@ -22,8 +22,8 @@ export const profile = {
 };
 
 export const impactStats = [
-  { value: "AI", label: "workflow-first engineering" },
-  { value: "12+", label: "web and automation builds" },
+  { value: "Code", label: "full stack development" },
+  { value: "Flow", label: "workflow automation logic" },
   { value: "API", label: "integrations and scalable systems" },
 ];
 
@@ -89,6 +89,17 @@ export const marqueeSkills = [
 ];
 
 export const projects = [
+  {
+    id: "ai-website-builder",
+    title: "AI Website Builder Pro",
+    kicker: "Full-stack SaaS product",
+    description:
+      "Full-stack website builder that generates complete, responsive websites from natural language prompts. Built with React, Node.js, and integrated AI services for intelligent page generation, real-time preview, and one-click deployment.",
+    image: "/projects/ai-site-builder.png",
+    tags: ["React", "TypeScript", "Node.js", "AI", "Vite", "Full Stack"],
+    demoURL: "https://webbuilderproai.netlify.app",
+    githubURL: "https://github.com/rodriberdo96/AI-Site-Builder",
+  },
   {
     id: "ai-real-estate-chatbot",
     title: "AI Real Estate Chatbot Automation",
