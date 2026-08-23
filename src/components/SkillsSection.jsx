@@ -1,8 +1,8 @@
-import { Bot, Code, Database, Wrench } from "lucide-react";
+import { Code2, Cpu, Database, Wrench } from "lucide-react";
 import { marqueeSkills, skillGroups } from "../data/portfolio";
 import { SectionReveal } from "./SectionReveal";
 
-const icons = [Code, Database, Bot, Wrench];
+const icons = [Code2, Database, Wrench, Cpu];
 
 export const SkillsSection = () => {
   return (
@@ -10,10 +10,10 @@ export const SkillsSection = () => {
       <div className="absolute inset-x-0 top-1/2 h-px bg-linear-to-r from-transparent via-primary/30 to-transparent" />
       <div className="container mx-auto max-w-6xl">
         <SectionReveal className="mx-auto max-w-3xl text-center">
-          <p className="section-eyebrow">Capabilities</p>
-          <h2 className="section-title mt-3">A modern stack for AI-enhanced product execution.</h2>
+          <p className="section-eyebrow">Technical Stack</p>
+          <h2 className="section-title mt-3">Built on modern technologies for speed and scale.</h2>
           <p className="mt-5 text-muted-foreground">
-            Frontend polish, backend foundations, workflow automation, AI agent tooling, and deployment workflows — organized around shipping useful systems quickly.
+            Frontend craftsmanship, robust backend architectures, modern deployment workflows, and seamless integrations — structured for delivering clean, production-grade web systems.
           </p>
         </SectionReveal>
 

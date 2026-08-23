@@ -13,7 +13,7 @@ const contactCards = [
   { label: "Location", value: profile.location, icon: MapPin },
 ];
 
-const projectTypes = ["AI workflow", "Full-stack app", "Automation system", "API integration"];
+const projectTypes = ["Client Website", "Full-Stack Web App", "API Backend", "E-Commerce", "UI/UX Redesign"];
 
 export const ContactSection = () => {
   const { toast } = useToast();
@@ -58,13 +58,13 @@ export const ContactSection = () => {
       <div className="container mx-auto max-w-6xl">
         <SectionReveal className="overflow-hidden rounded-[2rem] border border-primary/20 bg-card/80 shadow-2xl shadow-primary/5 backdrop-blur">
           <div className="grid lg:grid-cols-[0.9fr_1.1fr]">
-            <div className="relative overflow-hidden bg-linear-to-br from-primary/20 via-card to-cyan-400/10 p-8 text-left lg:p-10">
+            <div className="relative overflow-hidden bg-gradient-to-br from-primary/20 via-card to-amber-500/10 p-8 text-left lg:p-10">
               <div className="absolute inset-0 grid-overlay opacity-35" />
               <div className="relative">
-                <p className="section-eyebrow">Contact</p>
-                <h2 className="mt-3 text-4xl font-black tracking-tight md:text-5xl">Open to freelance, remote and AI automation opportunities.</h2>
+                <p className="section-eyebrow">Get In Touch</p>
+                <h2 className="mt-3 text-4xl font-black tracking-tight md:text-5xl">Let&apos;s build something exceptional together.</h2>
                 <p className="mt-5 leading-7 text-muted-foreground">
-                  Send me the workflow, SaaS idea, integration challenge, or product interface you want to build. I&apos;ll respond with a practical path for turning it into a polished, production-ready system.
+                  Have an upcoming project, need a high-conversion client website, a full-stack React platform, or an API integration? Reach out and let&apos;s discuss how to bring it to life with production-grade engineering.
                 </p>
 
                 <div className="mt-6 flex flex-wrap gap-2">
@@ -123,7 +123,7 @@ export const ContactSection = () => {
 
               <div className="rounded-2xl border border-border bg-background/60 p-4 text-sm text-muted-foreground">
                 <Sparkles className="mb-2 h-5 w-5 text-primary" aria-hidden="true" />
-                Best fit: AI workflow builds, automation systems, API integrations, React dashboards, and startup landing pages.
+                Specialized in custom client websites, React web apps, full-stack architectures, e-commerce, and high-performance landing pages.
               </div>
 
               <FormField id="name" label="Your name" autoComplete="name" placeholder="Jane Founder" />
@@ -139,12 +139,12 @@ export const ContactSection = () => {
                   required
                   rows="6"
                   className="form-input resize-none"
-                  placeholder="Tell me about the workflow, API, app, agent, timeline, and success metric you have in mind..."
+                  placeholder="Tell me about your project, website goals, timeline, and tech stack in mind..."
                 />
               </div>
 
               <button type="submit" disabled={isSubmitting} className={cn("cosmic-button w-full justify-center gap-2", isSubmitting && "cursor-not-allowed opacity-70")}>
-                {isSubmitting ? "Sending..." : "Send project brief"}
+                {isSubmitting ? "Sending..." : "Send Project Inquiry"}
                 <Send className="h-4 w-4" aria-hidden="true" />
               </button>
             </form>

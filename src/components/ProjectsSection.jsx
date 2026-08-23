@@ -1,77 +1,148 @@
-import { ArrowRight, Bot, CheckCircle2, ExternalLink, Github, Network, Sparkles, Workflow } from "lucide-react";
+import { ArrowRight, CheckCircle2, ExternalLink, Github, Globe, MapPin, Sparkles, Terminal, Workflow } from "lucide-react";
 import { profile, projects } from "../data/portfolio";
 import { SectionReveal } from "./SectionReveal";
 
 export const ProjectsSection = () => {
-  const isFeaturedProject = (project) =>
-    project?.type && Array.isArray(project?.highlights) && Array.isArray(project?.visualNodes);
-
-  const featuredProjects = projects.filter(isFeaturedProject).slice(0, 2);
-  const featuredProjectIds = new Set(featuredProjects.map((project) => project.id));
-  const otherProjects = projects.filter((project) => !featuredProjectIds.has(project.id));
+  // Flagship featured project: Buenos Aires Movil
+  const flagshipProject = projects.find((p) => p.id === "buenos-aires-movil") || projects[0];
+  // Other featured projects
+  const otherFeatured = projects.filter((p) => p.id !== "buenos-aires-movil" && p.type && (p.type === "client" || p.type === "automation"));
+  // Remaining web and full-stack projects
+  const standardProjects = projects.filter((p) => p.id !== "buenos-aires-movil" && p.id !== "ai-real-estate-chatbot");
+  const automationProjects = projects.filter((p) => p.type === "automation" || p.id === "ai-agent-tools-platform");
 
   return (
     <section id="projects" className="relative px-4 py-24">
       <div className="container mx-auto max-w-6xl">
         <SectionReveal className="flex flex-col justify-between gap-6 text-left md:flex-row md:items-end">
           <div className="max-w-3xl">
-            <p className="section-eyebrow">Selected work</p>
-            <h2 className="section-title mt-3">AI and automation projects now lead the portfolio.</h2>
+            <p className="section-eyebrow">Featured Client Work &amp; Products</p>
+            <h2 className="section-title mt-3">Production web applications &amp; client platforms.</h2>
             <p className="mt-5 text-muted-foreground">
-              The work is organized around high-leverage systems: AI agents, webhook orchestration, API-connected workflows, and full-stack product foundations.
+              Engineered with modern web standards, fluid UI/UX, robust backend architecture, and measurable business impact.
             </p>
           </div>
           <a href={profile.github} target="_blank" rel="noopener noreferrer" className="secondary-button inline-flex items-center justify-center gap-2">
-            More on GitHub
+            View GitHub Archive
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </a>
         </SectionReveal>
 
-        <div className="mt-12 grid gap-8">
-          {featuredProjects.map((project, index) => (
-            <FeaturedProjectCard key={project.id} project={project} reverse={index % 2 === 1} delay={index * 120} />
-          ))}
+        {/* Flagship Hero Project: Buenos Aires Movil */}
+        <div className="mt-12">
+          <FlagshipProjectCard project={flagshipProject} />
         </div>
 
-        <SectionReveal className="mt-16 flex items-end justify-between gap-6 text-left">
+        {/* Web Development & Client Platforms */}
+        <SectionReveal className="mt-20 flex items-end justify-between gap-6 text-left">
           <div>
-            <p className="section-eyebrow">Product foundations</p>
-            <h3 className="mt-3 text-3xl font-black tracking-tight md:text-4xl">More full-stack and product UI work.</h3>
+            <p className="section-eyebrow">Full Stack Applications</p>
+            <h3 className="mt-3 text-3xl font-black tracking-tight md:text-4xl">Client websites, platforms &amp; web apps.</h3>
           </div>
         </SectionReveal>
 
         <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {otherProjects.map((project, index) => (
+          {standardProjects.map((project, index) => (
             <StandardProjectCard key={project.id} project={project} delay={index * 80} />
           ))}
         </div>
+
+        {/* Secondary Section: Automation & Systems */}
+        {automationProjects.length > 0 && (
+          <>
+            <SectionReveal className="mt-20 flex items-end justify-between gap-6 text-left">
+              <div>
+                <p className="section-eyebrow">Integration &amp; Automation</p>
+                <h3 className="mt-3 text-2xl font-bold tracking-tight md:text-3xl">Workflow &amp; API automation systems.</h3>
+              </div>
+            </SectionReveal>
+
+            <div className="mt-8 grid gap-6 md:grid-cols-2">
+              {automationProjects.map((project, index) => (
+                <AutomationProjectCard key={project.id} project={project} delay={index * 80} />
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </section>
   );
 };
 
-const FeaturedProjectCard = ({ project, reverse = false, delay = 0 }) => (
-  <SectionReveal as="article" delay={delay} className="overflow-hidden rounded-[2rem] border border-primary/25 bg-card/75 shadow-2xl shadow-primary/5 backdrop-blur">
-    <div className={`grid min-h-[520px] ${reverse ? "lg:grid-cols-[0.95fr_1.05fr]" : "lg:grid-cols-[1.05fr_0.95fr]"}`}>
-      <div className={`relative overflow-hidden bg-secondary/25 p-6 ${reverse ? "lg:order-2" : ""}`}>
-        <div className="absolute inset-0 grid-overlay opacity-45" />
+const FlagshipProjectCard = ({ project }) => (
+  <SectionReveal as="article" className="overflow-hidden rounded-[2.5rem] border border-primary/30 bg-card/85 shadow-2xl shadow-primary/10 backdrop-blur">
+    <div className="grid lg:grid-cols-[1.1fr_0.9fr]">
+      {/* Visual / Screenshot Side */}
+      <div className="relative overflow-hidden bg-gradient-to-br from-card via-background to-secondary/40 p-6 lg:p-8 flex flex-col justify-center">
+        <div className="absolute inset-0 grid-overlay opacity-30" />
         <div className="absolute inset-x-10 top-10 h-40 rounded-full bg-primary/20 blur-3xl" />
-        {project.type === "agent" ? <AgentVisual project={project} /> : <WorkflowVisual project={project} />}
+        
+        {/* Browser Mockup Frame */}
+        <div className="relative mx-auto w-full rounded-2xl border border-border bg-background/95 shadow-2xl overflow-hidden">
+          {/* Browser Top Bar */}
+          <div className="flex items-center justify-between border-b border-border bg-card/90 px-4 py-3">
+            <div className="flex gap-2">
+              <span className="h-3 w-3 rounded-full bg-red-500/80" />
+              <span className="h-3 w-3 rounded-full bg-amber-500/80" />
+              <span className="h-3 w-3 rounded-full bg-emerald-500/80" />
+            </div>
+            <div className="flex items-center gap-2 rounded-full border border-border bg-background/80 px-4 py-1 text-xs font-mono text-muted-foreground">
+              <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
+              https://buenosairesmovil.com.ar
+            </div>
+            <span className="rounded-full bg-primary/15 px-2.5 py-0.5 text-[10px] font-bold text-primary">LIVE</span>
+          </div>
+
+          {/* Screenshot Image */}
+          <div className="relative aspect-[16/10] overflow-hidden bg-black group">
+            <img
+              src="/projects/BAMovil_Website.jpg"
+              alt="Buenos Aires Móvil Website Preview"
+              className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80" />
+            <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-left">
+              <div>
+                <p className="text-sm font-bold text-white">Interactive Leaflet Coverage Map</p>
+                <p className="text-xs text-white/70">AMBA Urban Advertising Network</p>
+              </div>
+              <a
+                href={project.demoURL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1.5 text-xs font-bold text-primary-foreground shadow-lg transition-transform hover:scale-105"
+              >
+                Visit Site <ExternalLink className="h-3.5 w-3.5" />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        {/* Node badges */}
+        <div className="mt-5 grid grid-cols-5 gap-2">
+          {project.visualNodes?.map((node) => (
+            <div key={node} className="flex items-center justify-center gap-1 rounded-xl border border-primary/20 bg-primary/10 py-2 text-center text-xs font-bold text-primary">
+              <MapPin className="h-3 w-3 shrink-0" />
+              <span className="truncate">{node}</span>
+            </div>
+          ))}
+        </div>
       </div>
 
-      <div className="flex flex-col justify-center p-8 text-left lg:p-10">
-        <div className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-primary/25 bg-primary/10 px-4 py-2 text-xs font-black uppercase tracking-[0.24em] text-primary">
-          <Sparkles className="h-4 w-4" aria-hidden="true" />
+      {/* Content Side */}
+      <div className="flex flex-col justify-center p-8 text-left lg:p-12">
+        <div className="mb-4 inline-flex w-fit items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-4 py-1.5 text-xs font-black uppercase tracking-[0.24em] text-primary">
+          <Globe className="h-3.5 w-3.5" aria-hidden="true" />
           {project.kicker}
         </div>
-        <h3 className="text-3xl font-black tracking-tight md:text-5xl">{project.title}</h3>
-        <p className="mt-5 text-lg leading-8 text-muted-foreground">{project.description}</p>
+        <h3 className="text-3xl font-black tracking-tight md:text-4xl text-foreground">{project.title}</h3>
+        <p className="mt-5 text-base leading-7 text-muted-foreground md:text-lg">{project.description}</p>
 
-        <div className="mt-6 grid gap-3 sm:grid-cols-2">
-          {project.highlights.map((highlight) => (
-            <div key={highlight} className="flex items-center gap-3 rounded-2xl border border-border bg-background/60 p-3 text-sm font-semibold">
+        <div className="mt-6 grid gap-2.5 sm:grid-cols-2">
+          {project.highlights?.map((highlight) => (
+            <div key={highlight} className="flex items-center gap-2.5 rounded-xl border border-border bg-background/60 p-2.5 text-sm font-semibold">
               <CheckCircle2 className="h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
-              {highlight}
+              <span>{highlight}</span>
             </div>
           ))}
         </div>
@@ -83,88 +154,52 @@ const FeaturedProjectCard = ({ project, reverse = false, delay = 0 }) => (
   </SectionReveal>
 );
 
-const WorkflowVisual = ({ project }) => (
-  <div className="relative flex h-full min-h-[430px] flex-col justify-center">
-    <div className="mx-auto w-full max-w-md rounded-[1.5rem] border border-border bg-background/80 p-5 shadow-2xl backdrop-blur">
-      <div className="mb-5 flex items-center justify-between border-b border-border pb-4">
-        <div className="flex items-center gap-2 font-bold">
-          <Workflow className="h-5 w-5 text-primary" aria-hidden="true" />
-          Make.com Scenario
-        </div>
-        <span className="rounded-full bg-emerald-400/10 px-3 py-1 text-xs font-bold text-emerald-300">Live flow</span>
-      </div>
-      <div className="space-y-4">
-        {project.visualNodes.map((node, index) => (
-          <div key={node} className="relative">
-            {index < project.visualNodes.length - 1 && <span className="absolute left-6 top-12 h-6 w-px bg-primary/40" />}
-            <div className="flex items-center gap-4 rounded-2xl border border-primary/15 bg-card/80 p-4">
-              <span className="grid h-12 w-12 place-items-center rounded-2xl bg-primary/10 text-primary ring-1 ring-primary/20">
-                <Network className="h-5 w-5" aria-hidden="true" />
-              </span>
-              <div>
-                <p className="font-bold">{node}</p>
-                <p className="text-sm text-muted-foreground">Step {index + 1}: automated handoff</p>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </div>
-);
-
-const AgentVisual = ({ project }) => (
-  <div className="relative flex h-full min-h-[430px] flex-col justify-center">
-    <div className="mx-auto w-full max-w-md rounded-[1.5rem] border border-border bg-background/80 p-5 shadow-2xl backdrop-blur">
-      <div className="mb-5 flex items-center gap-3 border-b border-border pb-4">
-        <span className="grid h-10 w-10 place-items-center rounded-2xl bg-primary text-primary-foreground">
-          <Bot className="h-5 w-5" aria-hidden="true" />
-        </span>
-        <div>
-          <p className="font-bold">Relevance AI Agent</p>
-          <p className="text-sm text-muted-foreground">Conversational tools + workflow reasoning</p>
-        </div>
-      </div>
-
-      <div className="rounded-2xl border border-border bg-card/80 p-4">
-        <p className="text-sm text-muted-foreground">Agent message</p>
-        <p className="mt-2 font-semibold">I can qualify requests, reason over context, and trigger the right tool action.</p>
-      </div>
-
-      <div className="mt-5 grid grid-cols-2 gap-3">
-        {project.visualNodes.map((node) => (
-          <div key={node} className="rounded-2xl border border-primary/15 bg-primary/10 p-4 text-center text-sm font-bold text-primary">
-            {node}
-          </div>
-        ))}
-      </div>
-    </div>
-  </div>
-);
-
 const StandardProjectCard = ({ project, delay = 0 }) => (
-  <SectionReveal as="article" delay={delay} className="spotlight-card group overflow-hidden text-left">
-    <div className="h-52 overflow-hidden bg-secondary/30">
-      {project.image ? (
-        <img src={project.image} alt={`${project.title} preview`} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
-      ) : (
-        <div className="grid h-full place-items-center grid-overlay text-primary">{project.title}</div>
-      )}
+  <SectionReveal as="article" delay={delay} className="spotlight-card group overflow-hidden text-left flex flex-col justify-between">
+    <div>
+      <div className="h-52 overflow-hidden bg-secondary/30 relative">
+        {project.image ? (
+          <img src={project.image} alt={`${project.title} preview`} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+        ) : (
+          <div className="grid h-full place-items-center grid-overlay text-primary font-bold">{project.title}</div>
+        )}
+      </div>
+      <div className="p-6">
+        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">{project.kicker}</p>
+        <h3 className="mt-2 text-xl font-bold">{project.title}</h3>
+        <p className="mt-3 text-sm leading-6 text-muted-foreground">{project.description}</p>
+        <TagList tags={project.tags} compact />
+      </div>
     </div>
-    <div className="p-6">
-      <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">{project.kicker}</p>
-      <h3 className="mt-3 text-2xl font-bold">{project.title}</h3>
-      <p className="mt-3 leading-7 text-muted-foreground">{project.description}</p>
+    <div className="px-6 pb-6">
+      <ProjectLinks project={project} className="mt-2" />
+    </div>
+  </SectionReveal>
+);
+
+const AutomationProjectCard = ({ project, delay = 0 }) => (
+  <SectionReveal as="article" delay={delay} className="spotlight-card p-6 text-left flex flex-col justify-between">
+    <div>
+      <div className="flex items-center justify-between mb-4">
+        <span className="rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-bold text-primary uppercase tracking-wider">
+          {project.kicker}
+        </span>
+        <Workflow className="h-5 w-5 text-primary" />
+      </div>
+      <h3 className="text-xl font-bold">{project.title}</h3>
+      <p className="mt-3 text-sm leading-6 text-muted-foreground">{project.description}</p>
       <TagList tags={project.tags} compact />
-      <ProjectLinks project={project} className="mt-6" />
+    </div>
+    <div className="mt-6">
+      <ProjectLinks project={project} />
     </div>
   </SectionReveal>
 );
 
 const TagList = ({ tags, compact = false }) => (
-  <div className={`flex flex-wrap gap-2 ${compact ? "mt-5" : "mt-6"}`}>
+  <div className={`flex flex-wrap gap-2 ${compact ? "mt-4" : "mt-6"}`}>
     {tags.map((tag) => (
-      <span key={tag} className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary ring-1 ring-primary/15">
+      <span key={tag} className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary ring-1 ring-primary/20">
         {tag}
       </span>
     ))}
@@ -175,12 +210,12 @@ const ProjectLinks = ({ project, className = "" }) => (
   <div className={`flex flex-wrap gap-3 ${className}`}>
     {project.demoURL && (
       <a href={project.demoURL} target="_blank" rel="noopener noreferrer" className="project-link">
-        Live / Demo <ExternalLink className="h-4 w-4" aria-hidden="true" />
+        Live Website <ExternalLink className="h-4 w-4" aria-hidden="true" />
       </a>
     )}
     {project.githubURL && (
       <a href={project.githubURL} target="_blank" rel="noopener noreferrer" className="project-link">
-        Source <Github className="h-4 w-4" aria-hidden="true" />
+        Code Repository <Github className="h-4 w-4" aria-hidden="true" />
       </a>
     )}
   </div>

@@ -9,8 +9,8 @@ export const navItems = [
 export const profile = {
   name: "Rodrigo Berdomás",
   shortName: "Rodri Berdomás",
-  role: "AI-Powered Full Stack & Automation Engineer",
-  roles: ["Full Stack Developer", "Automation Engineer", "AI Workflow Builder", "React Developer"],
+  role: "Full Stack Web Developer & Engineer",
+  roles: ["Full Stack Developer", "React Developer", "Web Engineer", "Frontend Developer"],
   location: "Buenos Aires, Argentina",
   email: "rodriberdomas@gmail.com",
   phone: "+54 9 11 3445-0448",
@@ -22,31 +22,31 @@ export const profile = {
 };
 
 export const impactStats = [
-  { value: "AI", label: "workflow-first engineering" },
-  { value: "12+", label: "web and automation builds" },
-  { value: "API", label: "integrations and scalable systems" },
+  { value: "4+", label: "years building products" },
+  { value: "15+", label: "projects shipped" },
+  { value: "3", label: "client websites live" },
 ];
 
 export const services = [
   {
-    title: "Full Stack Product Engineering",
+    title: "Full Stack Web Development",
     description:
-      "React, Node.js, APIs, authentication, data flows, and deployment-ready interfaces shaped around product goals instead of generic pages.",
+      "React frontends, Node.js APIs, authentication, data flows, and deployment-ready interfaces engineered around real product goals and business outcomes.",
   },
   {
-    title: "AI Workflow Automation",
+    title: "Client Websites & Landing Pages",
     description:
-      "Make.com, n8n, webhooks, JSON payloads, and AI-assisted flows that qualify leads, orchestrate systems, and remove repetitive work.",
+      "Premium websites for businesses, startups, and brands — built for performance, conversion, and a polished first impression that builds trust.",
   },
   {
-    title: "API & Integration Systems",
+    title: "API & Integration Engineering",
     description:
-      "REST APIs, third-party services, asynchronous workflow logic, and clean integration layers designed for reliable business operations.",
+      "REST APIs, third-party service integrations, asynchronous workflows, and clean backend architecture designed for reliability and scalability.",
   },
   {
-    title: "Automation-Ready SaaS UI",
+    title: "Automation & Workflow Systems",
     description:
-      "Premium dashboards, landing pages, and internal tools with modern UX, clear feedback states, and conversion-focused storytelling.",
+      "Make.com, n8n, webhooks, and workflow orchestration that eliminates repetitive tasks and connects systems into efficient business operations.",
   },
 ];
 
@@ -54,7 +54,7 @@ export const skillGroups = [
   {
     title: "Frontend",
     summary: "Product interfaces, landing pages, dashboards, and responsive component systems.",
-    skills: ["React", "JavaScript", "TypeScript", "TailwindCSS", "HTML/CSS", "Vite"],
+    skills: ["React", "TypeScript", "JavaScript", "TailwindCSS", "HTML/CSS", "Vite"],
   },
   {
     title: "Backend",
@@ -62,37 +62,50 @@ export const skillGroups = [
     skills: ["Node.js", "Express", "MongoDB", "SQL", "Spring Boot", "JWT"],
   },
   {
-    title: "Automation & AI",
-    summary: "Workflow orchestration, AI agents, webhooks, and API-connected business logic.",
-    skills: ["Make.com", "n8n", "AI Agents", "Relevance AI", "Webhooks", "REST APIs", "JSON", "API Integrations", "Workflow Automation"],
+    title: "Tools & Deployment",
+    summary: "Shipping workflows for modern cloud-ready products and collaboration.",
+    skills: ["Docker", "Git/GitHub", "Postman", "Vercel", "Render", "AWS concepts", "Leaflet"],
   },
   {
-    title: "Tools",
-    summary: "Shipping workflows for modern cloud-ready products and collaboration.",
-    skills: ["Docker", "Git/GitHub", "Postman", "Vercel", "Render", "AWS concepts"],
+    title: "Automation & AI",
+    summary: "Workflow orchestration, webhooks, and API-connected business logic.",
+    skills: ["Make.com", "n8n", "AI Agents", "Relevance AI", "Webhooks", "REST APIs", "JSON", "Workflow Automation"],
   },
 ];
 
 export const marqueeSkills = [
-  "AI Agents",
-  "Make.com",
-  "n8n",
   "React",
+  "TypeScript",
   "Node.js",
-  "REST APIs",
-  "Webhooks",
-  "Relevance AI",
-  "MongoDB",
   "TailwindCSS",
+  "REST APIs",
+  "Leaflet",
+  "MongoDB",
+  "Vite",
   "Docker",
   "Vercel",
+  "Make.com",
+  "n8n",
 ];
 
 export const projects = [
   {
+    id: "buenos-aires-movil",
+    title: "Buenos Aires Móvil — OOH Advertising Platform",
+    kicker: "Featured client website",
+    type: "client",
+    description:
+      "Complete website redesign for a Buenos Aires outdoor advertising company. Built a premium dark-mode marketing site with an interactive Leaflet coverage map, route explorer, service showcases, client testimonials, and a conversion-optimized contact flow — transforming their digital presence into a lead-generation engine.",
+    highlights: ["Interactive coverage map", "Bus route explorer", "Lead generation UX", "Dark-mode premium design", "Responsive mobile-first", "Real client project"],
+    tags: ["TypeScript", "React", "TailwindCSS", "Leaflet", "Framer Motion", "TanStack Router", "Vercel"],
+    image: "/projects/BAMovil_Website.jpg",
+    demoURL: "https://www.buenosairesmovil.com.ar",
+    visualNodes: ["Hero", "Servicios", "Cobertura", "Casos", "Contacto"],
+  },
+  {
     id: "ai-real-estate-chatbot",
     title: "AI Real Estate Chatbot Automation",
-    kicker: "Featured automation system",
+    kicker: "Automation system",
     type: "automation",
     description:
       "Production-oriented WhatsApp automation workflow for real estate businesses using Make.com, APIs, webhooks, and workflow orchestration to qualify leads and route conversations faster.",
@@ -100,19 +113,6 @@ export const projects = [
     tags: ["AI", "Automation", "Make.com", "Webhooks", "APIs", "Lead Qualification", "Workflow Orchestration"],
     demoURL: "https://us2.make.com/public/shared-scenario/T7ggng2IDBn/chatbot-inmobiliario",
     visualNodes: ["WhatsApp Lead", "Webhook", "Qualification Logic", "CRM/API", "Follow-up"],
-  },
-  {
-    id: "ai-agent-tools-platform",
-    title: "AI Agent & AI Tools Platform",
-    kicker: "Featured AI agent build",
-    type: "agent",
-    description:
-      "AI agent platform created with Relevance AI, combining conversational AI, automated workflows, tool integrations, and reasoning flows inside a modern assistant experience.",
-    highlights: ["AI agents", "Conversational AI", "Tool integrations", "Reasoning flows", "Automation pipelines", "Intelligent orchestration"],
-    tags: ["AI Agents", "Relevance AI", "Conversational AI", "Tool Integrations", "Automation Pipelines"],
-    demoURL:
-      "https://app.relevanceai.com/agents/bcbe5a/2c70d50e-b1ad-43b7-8e2f-553133c54366/8fd583db-993b-4e5a-bda0-bea5ebae9c63/embed-chat?hide_tool_steps=false&hide_file_uploads=false&hide_conversation_list=false&bubble_style=agent&primary_color=%23685FFF&bubble_icon=pd%2Fchat&input_placeholder_text=Type+your+message...&hide_logo=false&hide_description=false",
-    visualNodes: ["Agent", "Tools", "Memory", "Reasoning", "API Actions"],
   },
   {
     id: "ecommerce-fullstack",
@@ -126,6 +126,26 @@ export const projects = [
     demoURL: "https://fooddelapprodri.netlify.app/",
   },
   {
+    id: "interior-design-portfolio",
+    title: "Interior Design Portfolio",
+    kicker: "Client website",
+    description:
+      "Elegant Squarespace website for an interior design brand, focused on refined visual storytelling, service presentation, project credibility, and a polished client-facing experience.",
+    image: "/projects/HaksInterior.png",
+    tags: ["Squarespace", "Web Design", "Client Website", "Responsive UX"],
+    demoURL: "https://www.hakz.ae/",
+  },
+  {
+    id: "personal-portfolio",
+    title: "Personal Portfolio",
+    kicker: "This website",
+    description:
+      "A premium developer portfolio designed to showcase full-stack delivery, client projects, and engineering capabilities through modern web design and clean UX.",
+    image: "/projects/Landing2.png",
+    tags: ["React", "Vite", "TailwindCSS", "Netlify"],
+    githubURL: "https://github.com/rodriberdo96",
+  },
+  {
     id: "api-backend-ecommerce",
     title: "API Backend E-commerce",
     kicker: "Backend architecture",
@@ -136,33 +156,24 @@ export const projects = [
     githubURL: "https://github.com/rodriberdo96/Food_Delivery_App",
   },
   {
-    id: "interior-design-portfolio",
-    title: "Interior Design Portfolio",
-    kicker: "Squarespace client website",
-    description:
-      "Elegant Squarespace website for an interior design brand, focused on refined visual storytelling, service presentation, project credibility, and a polished client-facing experience.",
-    image: "/projects/HaksInterior.png",
-    tags: ["Squarespace", "Web Design", "Client Website", "Responsive UX"],
-    demoURL: "https://www.hakz.ae/",
-  },
-  {
-    id: "personal-portfolio",
-    title: "Personal Portfolio",
-    kicker: "Brand and conversion system",
-    description:
-      "A premium developer portfolio designed to reposition technical work around full-stack delivery, automation systems, and AI-powered engineering workflows.",
-    image: "/projects/Landing2.png",
-    tags: ["React", "Vite", "TailwindCSS", "Netlify"],
-    githubURL: "https://github.com/rodriberdo96",
-  },
-  {
     id: "monorepo-ecommerce",
     title: "Monorepo Ecommerce",
-    kicker: "Scalable app foundation",
+    kicker: "Scalable architecture",
     description:
       "Commerce architecture concept built around shared code, product modules, API contracts, and a clean path for scaling storefront and admin experiences.",
     image: "/projects/HousinLanding3.png",
     tags: ["Monorepo", "React", "Node.js", "APIs", "Architecture"],
     githubURL: "https://github.com/rodriberdo96",
+  },
+  {
+    id: "ai-agent-tools-platform",
+    title: "AI Agent & Tools Platform",
+    kicker: "AI agent build",
+    description:
+      "AI agent platform created with Relevance AI, combining conversational AI, automated workflows, tool integrations, and reasoning flows inside a modern assistant experience.",
+    image: "/projects/Landing2.png",
+    tags: ["AI Agents", "Relevance AI", "Conversational AI", "Tool Integrations"],
+    demoURL:
+      "https://app.relevanceai.com/agents/bcbe5a/2c70d50e-b1ad-43b7-8e2f-553133c54366/8fd583db-993b-4e5a-bda0-bea5ebae9c63/embed-chat?hide_tool_steps=false&hide_file_uploads=false&hide_conversation_list=false&bubble_style=agent&primary_color=%23685FFF&bubble_icon=pd%2Fchat&input_placeholder_text=Type+your+message...&hide_logo=false&hide_description=false",
   },
 ];

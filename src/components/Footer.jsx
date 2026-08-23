@@ -7,7 +7,7 @@ export const Footer = () => {
       <div className="container mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 text-center sm:flex-row sm:text-left">
         <div>
           <p className="font-black">{profile.name}</p>
-          <p className="mt-1 text-sm text-muted-foreground">&copy; {new Date().getFullYear()} — Built with React, Tailwind CSS, automation-first thinking, and AI startup polish.</p>
+          <p className="mt-1 text-sm text-muted-foreground">&copy; {new Date().getFullYear()} — Full Stack & Automation Engineering. Built with React & TailwindCSS.</p>
         </div>
 
         <div className="flex items-center gap-3">
