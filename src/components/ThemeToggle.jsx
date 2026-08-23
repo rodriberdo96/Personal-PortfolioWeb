@@ -40,17 +40,12 @@ export const ThemeToggle = () => {
       onClick={() => setIsDarkMode((current) => !current)}
       aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
       title={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
-      className={cn(
-        "fixed right-5 z-50 rounded-full p-2 transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary max-sm:hidden",
-        isScrolled
-          ? "top-[8px] bg-background/80 shadow-xs backdrop-blur-md"
-          : "top-[15px] bg-transparent"
-      )}
+      className="rounded-full p-2 transition-colors duration-200 hover:bg-primary/10 text-foreground"
     >
       {isDarkMode ? (
-        <Sun className="h-6 w-6 text-yellow-300" aria-hidden="true" />
+        <Sun className="h-5 w-5 text-yellow-500" aria-hidden="true" />
       ) : (
-        <Moon className="h-6 w-6 text-blue-900" aria-hidden="true" />
+        <Moon className="h-5 w-5 text-neutral-400" aria-hidden="true" />
       )}
     </button>
   );

@@ -1,43 +1,73 @@
-import { ArrowRight, CheckCircle2, ExternalLink, Github, Globe, MapPin, Sparkles, Terminal, Workflow } from "lucide-react";
+import { ArrowRight, CheckCircle2, ExternalLink, Github, Globe, MapPin, Sparkles, Workflow } from "lucide-react";
+import { useLanguage } from "../context/LanguageContext";
 import { profile, projects } from "../data/portfolio";
+import { ParallaxTilt } from "./ParallaxTilt";
 import { SectionReveal } from "./SectionReveal";
+import { SplitTextReveal } from "./SplitTextReveal";
 
 export const ProjectsSection = () => {
+  const { t, lang } = useLanguage();
+
+  const getProjectTranslation = (id, defaultValues) => {
+    const keyMap = {
+      "buenos-aires-movil": t.projects.items.bamovil,
+      "ai-website-builder": t.projects.items.aiBuilder,
+      "ai-real-estate-chatbot": t.projects.items.chatbot,
+      "ai-agent-tools-platform": t.projects.items.agent,
+      "ecommerce-fullstack": t.projects.items.ecommerce,
+      "api-backend-ecommerce": t.projects.items.backend,
+      "interior-design-portfolio": t.projects.items.interior,
+      "personal-portfolio": t.projects.items.portfolio,
+      "monorepo-ecommerce": t.projects.items.monorepo,
+    };
+    return keyMap[id] || defaultValues;
+  };
+
   // Flagship featured project: Buenos Aires Movil
-  const flagshipProject = projects.find((p) => p.id === "buenos-aires-movil") || projects[0];
-  // Other featured projects
-  const otherFeatured = projects.filter((p) => p.id !== "buenos-aires-movil" && p.type && (p.type === "client" || p.type === "automation"));
-  // Remaining web and full-stack projects
-  const standardProjects = projects.filter((p) => p.id !== "buenos-aires-movil" && p.id !== "ai-real-estate-chatbot");
-  const automationProjects = projects.filter((p) => p.type === "automation" || p.id === "ai-agent-tools-platform");
+  const rawFlagship = projects.find((p) => p.id === "buenos-aires-movil") || projects[0];
+  const flagshipProject = { ...rawFlagship, ...getProjectTranslation(rawFlagship.id, rawFlagship) };
+
+  // Standard full-stack web applications
+  const standardProjects = projects
+    .filter((p) => p.id !== "buenos-aires-movil" && p.id !== "ai-real-estate-chatbot" && p.id !== "ai-agent-tools-platform")
+    .map((p) => ({ ...p, ...getProjectTranslation(p.id, p) }));
+
+  // Secondary automation projects
+  const automationProjects = projects
+    .filter((p) => p.type === "automation" || p.id === "ai-agent-tools-platform" || p.id === "ai-real-estate-chatbot")
+    .map((p) => ({ ...p, ...getProjectTranslation(p.id, p) }));
 
   return (
     <section id="projects" className="relative px-4 py-24">
       <div className="container mx-auto max-w-6xl">
         <SectionReveal className="flex flex-col justify-between gap-6 text-left md:flex-row md:items-end">
           <div className="max-w-3xl">
-            <p className="section-eyebrow">Featured Client Work &amp; Products</p>
-            <h2 className="section-title mt-3">Production web applications &amp; client platforms.</h2>
+            <p className="section-eyebrow">{t.projects.eyebrow}</p>
+            <SplitTextReveal
+              text={t.projects.title}
+              className="section-title mt-3"
+              delay={100}
+            />
             <p className="mt-5 text-muted-foreground">
-              Engineered with modern web standards, fluid UI/UX, robust backend architecture, and measurable business impact.
+              {t.projects.description}
             </p>
           </div>
           <a href={profile.github} target="_blank" rel="noopener noreferrer" className="secondary-button inline-flex items-center justify-center gap-2">
-            View GitHub Archive
+            {t.projects.moreGithub}
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </a>
         </SectionReveal>
 
         {/* Flagship Hero Project: Buenos Aires Movil */}
         <div className="mt-12">
-          <FlagshipProjectCard project={flagshipProject} />
+          <FlagshipProjectCard project={flagshipProject} lang={lang} />
         </div>
 
         {/* Web Development & Client Platforms */}
         <SectionReveal className="mt-20 flex items-end justify-between gap-6 text-left">
           <div>
-            <p className="section-eyebrow">Full Stack Applications</p>
-            <h3 className="mt-3 text-3xl font-black tracking-tight md:text-4xl">Client websites, platforms &amp; web apps.</h3>
+            <p className="section-eyebrow">{t.projects.eyebrowSub}</p>
+            <h3 className="mt-3 text-3xl font-black tracking-tight md:text-4xl">{t.projects.titleSub}</h3>
           </div>
         </SectionReveal>
 
@@ -52,8 +82,10 @@ export const ProjectsSection = () => {
           <>
             <SectionReveal className="mt-20 flex items-end justify-between gap-6 text-left">
               <div>
-                <p className="section-eyebrow">Integration &amp; Automation</p>
-                <h3 className="mt-3 text-2xl font-bold tracking-tight md:text-3xl">Workflow &amp; API automation systems.</h3>
+                <p className="section-eyebrow">{lang === "es" ? "Integración y Automatización" : "Integration & Automation"}</p>
+                <h3 className="mt-3 text-2xl font-bold tracking-tight md:text-3xl">
+                  {lang === "es" ? "Sistemas de automatización y flujos de APIs." : "Workflow & API automation systems."}
+                </h3>
               </div>
             </SectionReveal>
 
@@ -69,7 +101,7 @@ export const ProjectsSection = () => {
   );
 };
 
-const FlagshipProjectCard = ({ project }) => (
+const FlagshipProjectCard = ({ project, lang = "en" }) => (
   <SectionReveal as="article" className="overflow-hidden rounded-[2.5rem] border border-primary/30 bg-card/85 shadow-2xl shadow-primary/10 backdrop-blur">
     <div className="grid lg:grid-cols-[1.1fr_0.9fr]">
       {/* Visual / Screenshot Side */}
@@ -103,8 +135,12 @@ const FlagshipProjectCard = ({ project }) => (
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-80" />
             <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-left">
               <div>
-                <p className="text-sm font-bold text-white">Interactive Leaflet Coverage Map</p>
-                <p className="text-xs text-white/70">AMBA Urban Advertising Network</p>
+                <p className="text-sm font-bold text-white">
+                  {lang === "es" ? "Mapa Interactivo de Cobertura con Leaflet" : "Interactive Leaflet Coverage Map"}
+                </p>
+                <p className="text-xs text-white/70">
+                  {lang === "es" ? "Red Publicitaria Urbana AMBA" : "AMBA Urban Advertising Network"}
+                </p>
               </div>
               <a
                 href={project.demoURL}
@@ -112,7 +148,7 @@ const FlagshipProjectCard = ({ project }) => (
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1.5 text-xs font-bold text-primary-foreground shadow-lg transition-transform hover:scale-105"
               >
-                Visit Site <ExternalLink className="h-3.5 w-3.5" />
+                {lang === "es" ? "Visitar Sitio" : "Visit Site"} <ExternalLink className="h-3.5 w-3.5" />
               </a>
             </div>
           </div>
@@ -155,44 +191,48 @@ const FlagshipProjectCard = ({ project }) => (
 );
 
 const StandardProjectCard = ({ project, delay = 0 }) => (
-  <SectionReveal as="article" delay={delay} className="spotlight-card group overflow-hidden text-left flex flex-col justify-between">
-    <div>
-      <div className="h-52 overflow-hidden bg-secondary/30 relative">
-        {project.image ? (
-          <img src={project.image} alt={`${project.title} preview`} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
-        ) : (
-          <div className="grid h-full place-items-center grid-overlay text-primary font-bold">{project.title}</div>
-        )}
+  <SectionReveal as="article" delay={delay} className="text-left">
+    <ParallaxTilt className="spotlight-card shimmer-border group overflow-hidden flex flex-col justify-between h-full" intensity={3}>
+      <div>
+        <div className="h-52 overflow-hidden bg-secondary/30 relative">
+          {project.image ? (
+            <img src={project.image} alt={`${project.title} preview`} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+          ) : (
+            <div className="grid h-full place-items-center grid-overlay text-primary font-bold">{project.title}</div>
+          )}
+        </div>
+        <div className="p-6">
+          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">{project.kicker}</p>
+          <h3 className="mt-2 text-xl font-bold">{project.title}</h3>
+          <p className="mt-3 text-sm leading-6 text-muted-foreground">{project.description}</p>
+          <TagList tags={project.tags} compact />
+        </div>
       </div>
-      <div className="p-6">
-        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">{project.kicker}</p>
-        <h3 className="mt-2 text-xl font-bold">{project.title}</h3>
-        <p className="mt-3 text-sm leading-6 text-muted-foreground">{project.description}</p>
-        <TagList tags={project.tags} compact />
+      <div className="px-6 pb-6">
+        <ProjectLinks project={project} className="mt-2" />
       </div>
-    </div>
-    <div className="px-6 pb-6">
-      <ProjectLinks project={project} className="mt-2" />
-    </div>
+    </ParallaxTilt>
   </SectionReveal>
 );
 
 const AutomationProjectCard = ({ project, delay = 0 }) => (
-  <SectionReveal as="article" delay={delay} className="spotlight-card p-6 text-left flex flex-col justify-between">
-    <div>
-      <div className="flex items-center justify-between mb-4">
-        <span className="rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-bold text-primary uppercase tracking-wider">
-          {project.kicker}
-        </span>
-        <Workflow className="h-5 w-5 text-primary" />
+  <SectionReveal as="article" delay={delay} className="text-left">
+    <ParallaxTilt className="spotlight-card p-6 flex flex-col justify-between h-full" intensity={3}>
+      <div>
+        <div className="flex items-center justify-between mb-4">
+          <span className="rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-bold text-primary uppercase tracking-wider">
+            {project.kicker}
+          </span>
+          <Workflow className="h-5 w-5 text-primary" />
+        </div>
+        <h3 className="text-xl font-bold">{project.title}</h3>
+        <p className="mt-3 text-sm leading-6 text-muted-foreground">{project.description}</p>
+        <TagList tags={project.tags} compact />
       </div>
-      <h3 className="text-xl font-bold">{project.title}</h3>
-      <p className="mt-3 text-sm leading-6 text-muted-foreground">{project.description}</p>
-      <TagList tags={project.tags} compact />
-    </div>
-    <div className="mt-6">
-      <ProjectLinks project={project} />
-    </div>
+      <div className="mt-6">
+        <ProjectLinks project={project} />
+      </div>
+    </ParallaxTilt>
   </SectionReveal>
 );
 

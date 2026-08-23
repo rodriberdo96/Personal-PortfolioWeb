@@ -1,23 +1,43 @@
 import { Github, Linkedin, Mail, MapPin, Phone, Send, Sparkles } from "lucide-react";
 import { useState } from "react";
+import { useLanguage } from "../context/LanguageContext";
 import { profile } from "../data/portfolio";
 import { useToast } from "../hooks/use-toast";
 import { cn } from "../lib/utils";
 import { SectionReveal } from "./SectionReveal";
+import { SplitTextReveal } from "./SplitTextReveal";
 
 const encodeFormData = (formData) => new URLSearchParams(formData).toString();
 
-const contactCards = [
-  { label: "Email", value: profile.email, href: `mailto:${profile.email}`, icon: Mail },
-  { label: "Phone", value: profile.phone, href: profile.phoneHref, icon: Phone },
-  { label: "Location", value: profile.location, icon: MapPin },
-];
-
-const projectTypes = ["Client Website", "Full-Stack Web App", "API Backend", "E-Commerce", "UI/UX Redesign"];
-
 export const ContactSection = () => {
+  const { t, lang } = useLanguage();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const contactCards = [
+    { label: "Email", value: profile.email, href: `mailto:${profile.email}`, icon: Mail },
+    { label: "WhatsApp", value: profile.phone, href: profile.phoneHref, icon: Phone },
+    { label: "Location", value: profile.location, icon: MapPin },
+  ];
+
+  const getCardLabel = (label) => {
+    if (lang === "es") {
+      const map = {
+        Email: "Correo",
+        WhatsApp: "WhatsApp",
+        Location: "Ubicación",
+      };
+      return map[label] || label;
+    }
+    return label;
+  };
+
+  const getProjectTypes = () => {
+    if (lang === "es") {
+      return ["Sitio Web de Cliente", "App Web Full-Stack", "API Backend", "E-Commerce", "Rediseño UI/UX"];
+    }
+    return ["Client Website", "Full-Stack Web App", "API Backend", "E-Commerce", "UI/UX Redesign"];
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -38,14 +58,14 @@ export const ContactSection = () => {
       }
 
       toast({
-        title: "Message sent",
-        description: "Thank you for reaching out! I'll get back to you soon.",
+        title: lang === "es" ? "Mensaje enviado" : "Message sent",
+        description: lang === "es" ? "¡Gracias por escribir! Te responderé pronto." : "Thank you for reaching out! I'll get back to you soon.",
       });
       form.reset();
     } catch {
       toast({
-        title: "Message not sent",
-        description: `Please email me directly at ${profile.email}.`,
+        title: lang === "es" ? "Mensaje no enviado" : "Message not sent",
+        description: lang === "es" ? `Por favor escríbeme directamente a ${profile.email}.` : `Please email me directly at ${profile.email}.`,
         variant: "destructive",
       });
     } finally {
@@ -61,14 +81,18 @@ export const ContactSection = () => {
             <div className="relative overflow-hidden bg-gradient-to-br from-primary/20 via-card to-amber-500/10 p-8 text-left lg:p-10">
               <div className="absolute inset-0 grid-overlay opacity-35" />
               <div className="relative">
-                <p className="section-eyebrow">Get In Touch</p>
-                <h2 className="mt-3 text-4xl font-black tracking-tight md:text-5xl">Let&apos;s build something exceptional together.</h2>
+                <p className="section-eyebrow">{t.contact.eyebrow}</p>
+                <SplitTextReveal
+                  text={t.contact.title}
+                  className="mt-3 text-4xl font-black tracking-tight md:text-5xl"
+                  delay={200}
+                />
                 <p className="mt-5 leading-7 text-muted-foreground">
-                  Have an upcoming project, need a high-conversion client website, a full-stack React platform, or an API integration? Reach out and let&apos;s discuss how to bring it to life with production-grade engineering.
+                  {t.contact.description}
                 </p>
 
                 <div className="mt-6 flex flex-wrap gap-2">
-                  {projectTypes.map((type) => (
+                  {getProjectTypes().map((type) => (
                     <span key={type} className="rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-bold text-primary">
                       {type}
                     </span>
@@ -80,12 +104,12 @@ export const ContactSection = () => {
                     const ContactIcon = card.icon;
 
                     return (
-                      <div key={card.label} className="flex items-center gap-4 rounded-2xl border border-border bg-background/70 p-4">
+                      <div key={card.label} className="flex items-center gap-4 rounded-2xl border border-border bg-background/70 p-4 transition-all duration-300 hover:border-primary/30 hover:shadow-sm">
                         <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
                           <ContactIcon className="h-5 w-5" aria-hidden="true" />
                         </div>
                         <div>
-                          <p className="text-sm text-muted-foreground">{card.label}</p>
+                          <p className="text-sm text-muted-foreground">{getCardLabel(card.label)}</p>
                           {card.href ? (
                             <a href={card.href} className="font-semibold hover:text-primary">
                               {card.value}
@@ -100,13 +124,13 @@ export const ContactSection = () => {
                 </div>
 
                 <div className="mt-8 flex gap-3">
-                  <a href={profile.github} target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="Open GitHub profile">
+                  <a href={profile.github} target="_blank" rel="noopener noreferrer" className="social-icon glow-icon" aria-label="Open GitHub profile">
                     <Github className="h-5 w-5" aria-hidden="true" />
                   </a>
-                  <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="social-icon" aria-label="Open LinkedIn profile">
+                  <a href={profile.linkedin} target="_blank" rel="noopener noreferrer" className="social-icon glow-icon" aria-label="Open LinkedIn profile">
                     <Linkedin className="h-5 w-5" aria-hidden="true" />
                   </a>
-                  <a href={`mailto:${profile.email}`} className="social-icon" aria-label="Send email">
+                  <a href={`mailto:${profile.email}`} className="social-icon glow-icon" aria-label="Send email">
                     <Mail className="h-5 w-5" aria-hidden="true" />
                   </a>
                 </div>
@@ -123,28 +147,32 @@ export const ContactSection = () => {
 
               <div className="rounded-2xl border border-border bg-background/60 p-4 text-sm text-muted-foreground">
                 <Sparkles className="mb-2 h-5 w-5 text-primary" aria-hidden="true" />
-                Specialized in custom client websites, React web apps, full-stack architectures, e-commerce, and high-performance landing pages.
+                {t.contact.formHelp}
               </div>
 
-              <FormField id="name" label="Your name" autoComplete="name" placeholder="Jane Founder" />
-              <FormField id="email" label="Email address" type="email" autoComplete="email" placeholder="you@example.com" />
+              <FormField id="name" label={t.contact.labelName} autoComplete="name" placeholder={t.contact.placeholderName} />
+              <FormField id="email" label={t.contact.labelEmail} type="email" autoComplete="email" placeholder={t.contact.placeholderEmail} />
 
               <div>
                 <label htmlFor="message" className="mb-2 block text-sm font-semibold">
-                  Project details
+                  {t.contact.labelDetails}
                 </label>
                 <textarea
                   id="message"
                   name="message"
                   required
                   rows="6"
-                  className="form-input resize-none"
-                  placeholder="Tell me about your project, website goals, timeline, and tech stack in mind..."
+                  className="form-input form-input-glow resize-none"
+                  placeholder={t.contact.placeholderDetails}
                 />
               </div>
 
-              <button type="submit" disabled={isSubmitting} className={cn("cosmic-button w-full justify-center gap-2", isSubmitting && "cursor-not-allowed opacity-70")}>
-                {isSubmitting ? "Sending..." : "Send Project Inquiry"}
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className={cn("cosmic-button w-full justify-center gap-2", isSubmitting && "cursor-not-allowed opacity-70")}
+              >
+                {isSubmitting ? t.contact.sending : t.contact.submit}
                 <Send className="h-4 w-4" aria-hidden="true" />
               </button>
             </form>
@@ -160,6 +188,6 @@ const FormField = ({ id, label, type = "text", autoComplete, placeholder }) => (
     <label htmlFor={id} className="mb-2 block text-sm font-semibold">
       {label}
     </label>
-    <input id={id} name={id} type={type} required className="form-input" autoComplete={autoComplete} placeholder={placeholder} />
+    <input id={id} name={id} type={type} required className="form-input form-input-glow" autoComplete={autoComplete} placeholder={placeholder} />
   </div>
 );
