@@ -47,12 +47,15 @@ export const HeroSection = () => {
 
       <div className="container mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr]">
         <div className="text-left">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-card/80 px-4 py-2 text-sm text-foreground/80 shadow-sm backdrop-blur">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75"></span>
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-primary"></span>
+          <div className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-primary/30 bg-card/85 px-4 py-2 text-sm text-foreground/90 shadow-lg shadow-primary/5 backdrop-blur-xl transition-all duration-300 hover:scale-[1.02] hover:border-primary/50 group">
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
+              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500 shadow-sm shadow-emerald-500/50"></span>
             </span>
-            {t.hero.status}
+            <span className="font-medium">{t.hero.status}</span>
+            <span className="hidden sm:inline-block rounded-full bg-primary/15 px-2.5 py-0.5 text-[10px] font-bold text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+              {lang === "es" ? "4+ Sitios de Clientes" : "4+ Client Sites Live"}
+            </span>
           </div>
 
           <p className="mb-4 text-sm font-black uppercase tracking-[0.35em] text-primary">

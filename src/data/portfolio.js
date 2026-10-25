@@ -23,8 +23,8 @@ export const profile = {
 
 export const impactStats = [
   { value: "4+", label: "years building products" },
-  { value: "15+", label: "projects shipped" },
-  { value: "3", label: "client websites live" },
+  { value: "16+", label: "projects shipped" },
+  { value: "4+", label: "client websites live" },
 ];
 
 export const services = [
@@ -101,6 +101,19 @@ export const projects = [
     image: "/projects/BAMovil_Website.jpg",
     demoURL: "https://www.buenosairesmovil.com.ar",
     visualNodes: ["Hero", "Servicios", "Cobertura", "Casos", "Contacto"],
+  },
+  {
+    id: "dr-luciano-ruggeri",
+    title: "Dr. Luciano Ruggeri — Odontología Estética",
+    kicker: "Live client website",
+    type: "client",
+    description:
+      "Premier website and digital presence for Dr. Luciano Ruggeri, a specialist in prosthodontics, aesthetic dentistry, and laser dentistry located in Palermo, Buenos Aires. Features appointment scheduling, direct WhatsApp intake, clinical case showcases, and local SEO architecture.",
+    highlights: ["Direct appointment booking", "WhatsApp consultation flow", "Clinical cases showcase", "Local SEO & Google presence", "Responsive mobile-first UX", "High-trust healthcare branding"],
+    tags: ["React / Web", "TailwindCSS", "Client Website", "Conversion UX", "SEO", "Healthcare"],
+    image: "/projects/drlucianoruggeri.png",
+    demoURL: "https://www.drlucianoruggeri.com.ar/",
+    visualNodes: ["Consultorio", "Servicios", "Casos Clínicos", "Turnos Online", "WhatsApp"],
   },
   {
     id: "ai-website-builder",

@@ -13,12 +13,16 @@ export const ParallaxTilt = ({ children, className, intensity = 8, glare = true 
       const y = (e.clientY - rect.top) / rect.height;
       const rotateX = (0.5 - y) * intensity;
       const rotateY = (x - 0.5) * intensity;
-      el.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+      el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.018, 1.018, 1.018)`;
+
+      // Set CSS variables for Apple spotlight border and ambient illumination
+      el.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`);
+      el.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
 
       if (glare) {
         const shine = el.querySelector(".tilt-shine");
         if (shine) {
-          shine.style.background = `radial-gradient(circle at ${x * 100}% ${y * 100}%, hsl(var(--primary) / 0.1), transparent 60%)`;
+          shine.style.background = `radial-gradient(circle at ${x * 100}% ${y * 100}%, hsl(var(--primary) / 0.14), transparent 60%)`;
           shine.style.opacity = "1";
         }
       }
@@ -29,7 +33,9 @@ export const ParallaxTilt = ({ children, className, intensity = 8, glare = true 
   const handleMouseLeave = useCallback(() => {
     const el = ref.current;
     if (!el) return;
-    el.style.transform = "perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
+    el.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
+    el.style.setProperty("--mouse-x", "-999px");
+    el.style.setProperty("--mouse-y", "-999px");
     const shine = el.querySelector(".tilt-shine");
     if (shine) {
       shine.style.opacity = "0";

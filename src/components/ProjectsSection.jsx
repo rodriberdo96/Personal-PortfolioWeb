@@ -1,4 +1,4 @@
-import { ArrowRight, CheckCircle2, ExternalLink, Github, Globe, MapPin, Sparkles, Workflow } from "lucide-react";
+import { ArrowRight, CheckCircle2, ExternalLink, Github, Globe, Lock, MapPin, Sparkles, Workflow } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 import { profile, projects } from "../data/portfolio";
 import { ParallaxTilt } from "./ParallaxTilt";
@@ -11,6 +11,7 @@ export const ProjectsSection = () => {
   const getProjectTranslation = (id, defaultValues) => {
     const keyMap = {
       "buenos-aires-movil": t.projects.items.bamovil,
+      "dr-luciano-ruggeri": t.projects.items.drluciano,
       "ai-website-builder": t.projects.items.aiBuilder,
       "ai-real-estate-chatbot": t.projects.items.chatbot,
       "ai-agent-tools-platform": t.projects.items.agent,
@@ -73,7 +74,7 @@ export const ProjectsSection = () => {
 
         <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
           {standardProjects.map((project, index) => (
-            <StandardProjectCard key={project.id} project={project} delay={index * 80} />
+            <StandardProjectCard key={project.id} project={project} delay={index * 80} lang={lang} />
           ))}
         </div>
 
@@ -190,30 +191,109 @@ const FlagshipProjectCard = ({ project, lang = "en" }) => (
   </SectionReveal>
 );
 
-const StandardProjectCard = ({ project, delay = 0 }) => (
-  <SectionReveal as="article" delay={delay} className="text-left">
-    <ParallaxTilt className="spotlight-card shimmer-border group overflow-hidden flex flex-col justify-between h-full" intensity={3}>
-      <div>
-        <div className="h-52 overflow-hidden bg-secondary/30 relative">
-          {project.image ? (
-            <img src={project.image} alt={`${project.title} preview`} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
-          ) : (
-            <div className="grid h-full place-items-center grid-overlay text-primary font-bold">{project.title}</div>
-          )}
+const StandardProjectCard = ({ project, delay = 0, lang = "en" }) => {
+  const isRuggeri = project.id === "dr-luciano-ruggeri";
+
+  if (isRuggeri) {
+    return (
+      <SectionReveal as="article" delay={delay} className="text-left md:col-span-2 xl:col-span-2">
+        <ParallaxTilt className="spotlight-card shimmer-border group overflow-hidden flex flex-col justify-between h-full border border-primary/30" intensity={3}>
+          <div>
+            {/* macOS Browser Mockup Top Bar */}
+            <div className="flex items-center justify-between border-b border-border/70 bg-card/90 px-4 py-3">
+              <div className="flex gap-2">
+                <span className="h-3 w-3 rounded-full bg-red-500/80" />
+                <span className="h-3 w-3 rounded-full bg-amber-500/80" />
+                <span className="h-3 w-3 rounded-full bg-emerald-500/80" />
+              </div>
+              <div className="flex items-center gap-2 rounded-full border border-border/60 bg-background/80 px-4 py-1 text-xs font-mono text-muted-foreground">
+                <Lock className="h-3 w-3 text-emerald-500" />
+                <span>https://www.drlucianoruggeri.com.ar</span>
+              </div>
+              <div className="flex items-center gap-1.5 rounded-full bg-primary/15 px-2.5 py-0.5 text-[10px] font-bold text-primary">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                {lang === "es" ? "CLIENTE EN VIVO" : "CLIENT LIVE"}
+              </div>
+            </div>
+
+            {/* Preview image */}
+            <div className="relative aspect-[16/8.5] overflow-hidden bg-secondary/30">
+              <img
+                src={project.image}
+                alt={`${project.title} preview`}
+                loading="lazy"
+                className="h-full w-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-transparent to-transparent opacity-80" />
+              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+                <span className="rounded-full bg-background/85 px-3 py-1 text-xs font-semibold backdrop-blur text-foreground border border-border/60">
+                  📍 Palermo, CABA · Odontología Estética & Láser
+                </span>
+                <a
+                  href={project.demoURL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-full bg-primary px-3 py-1.5 text-xs font-bold text-primary-foreground shadow-md transition-transform hover:scale-105"
+                >
+                  {lang === "es" ? "Visitar Web" : "Visit Website"} <ExternalLink className="h-3.5 w-3.5" />
+                </a>
+              </div>
+            </div>
+
+            <div className="p-6 lg:p-7">
+              <div className="flex items-center justify-between gap-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">{project.kicker}</p>
+                <span className="text-xs font-mono text-muted-foreground">Dr. Luciano Ruggeri</span>
+              </div>
+              <h3 className="mt-2 text-2xl font-bold text-foreground">{project.title}</h3>
+              <p className="mt-3 text-sm leading-6 text-muted-foreground">{project.description}</p>
+
+              {/* Highlights pills */}
+              <div className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3">
+                {project.highlights?.map((hl) => (
+                  <div key={hl} className="flex items-center gap-2 rounded-lg border border-border/60 bg-background/60 p-2 text-xs font-medium">
+                    <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-primary" />
+                    <span className="truncate">{hl}</span>
+                  </div>
+                ))}
+              </div>
+
+              <TagList tags={project.tags} compact />
+            </div>
+          </div>
+          <div className="px-6 pb-6 lg:px-7 lg:pb-7">
+            <ProjectLinks project={project} className="mt-2" />
+          </div>
+        </ParallaxTilt>
+      </SectionReveal>
+    );
+  }
+
+  return (
+    <SectionReveal as="article" delay={delay} className="text-left">
+      <ParallaxTilt className="spotlight-card shimmer-border group overflow-hidden flex flex-col justify-between h-full" intensity={3}>
+        <div>
+          <div className="h-52 overflow-hidden bg-secondary/30 relative">
+            {project.image ? (
+              <img src={project.image} alt={`${project.title} preview`} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            ) : (
+              <div className="grid h-full place-items-center grid-overlay text-primary font-bold">{project.title}</div>
+            )}
+          </div>
+          <div className="p-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">{project.kicker}</p>
+            <h3 className="mt-2 text-xl font-bold">{project.title}</h3>
+            <p className="mt-3 text-sm leading-6 text-muted-foreground">{project.description}</p>
+            <TagList tags={project.tags} compact />
+          </div>
         </div>
-        <div className="p-6">
-          <p className="text-xs font-semibold uppercase tracking-[0.22em] text-primary">{project.kicker}</p>
-          <h3 className="mt-2 text-xl font-bold">{project.title}</h3>
-          <p className="mt-3 text-sm leading-6 text-muted-foreground">{project.description}</p>
-          <TagList tags={project.tags} compact />
+        <div className="px-6 pb-6">
+          <ProjectLinks project={project} className="mt-2" />
         </div>
-      </div>
-      <div className="px-6 pb-6">
-        <ProjectLinks project={project} className="mt-2" />
-      </div>
-    </ParallaxTilt>
-  </SectionReveal>
-);
+      </ParallaxTilt>
+    </SectionReveal>
+  );
+};
 
 const AutomationProjectCard = ({ project, delay = 0 }) => (
   <SectionReveal as="article" delay={delay} className="text-left">

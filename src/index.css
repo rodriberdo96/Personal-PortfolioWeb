@@ -308,17 +308,22 @@
   mask-image: radial-gradient(circle at center, black, transparent 78%);
 }
 
-/* ─── Section Reveal ──────────────────────────── */
+/* ─── Section Reveal (Apple Cinematic) ────────── */
 
 .reveal-up {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transform: translateY(32px) scale(0.985);
+  filter: blur(8px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform, filter;
 }
 
 .reveal-up.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
+  filter: blur(0px);
 }
 
 /* ─── Role Rotator ────────────────────────────── */
@@ -478,27 +483,53 @@
   animation: orbit var(--orbit-duration, 20s) linear infinite reverse;
 }
 
-/* ─── Parallax Tilt ───────────────────────────── */
+/* ─── Apple Spotlight Tilt Card ───────────────── */
 
 .tilt-card {
   transform-style: preserve-3d;
-  transition: transform 0.15s ease-out;
+  position: relative;
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform;
+}
+
+.tilt-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: radial-gradient(
+    380px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+    hsl(var(--primary) / 0.5),
+    transparent 65%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 1;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  padding: 1px;
+}
+
+.tilt-card:hover::before {
+  opacity: 1;
 }
 
 .tilt-card .tilt-shine {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(
-    135deg,
-    transparent 30%,
-    hsl(var(--primary) / 0.06) 50%,
-    transparent 70%
+  background: radial-gradient(
+    450px circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+    hsl(var(--primary) / 0.1),
+    transparent 60%
   );
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.4s ease;
   pointer-events: none;
+  z-index: 2;
 }
 
 .tilt-card:hover .tilt-shine {

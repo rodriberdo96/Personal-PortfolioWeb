@@ -21,7 +21,7 @@ export const translations = {
       eyebrow: "About Rodrigo",
       title: "Crafting modern web applications with engineering precision.",
       desc1: "I build high-performance web applications, responsive client platforms, and scalable backend services. My focus is delivering polished digital experiences with clean architecture, fluid UI/UX, and reliable API foundations that drive real business growth.",
-      desc2: "My core stack centers on React, TypeScript, Node.js, Express, MongoDB, TailwindCSS, and cloud deployments. Whether engineering custom client websites like Buenos Aires Móvil or building full-stack products, I prioritize speed, maintainability, and user conversion.",
+      desc2: "My core stack centers on React, TypeScript, Node.js, Express, MongoDB, TailwindCSS, and cloud deployments. Whether engineering custom client websites like Buenos Aires Móvil and Dr. Luciano Ruggeri or building full-stack products, I prioritize speed, maintainability, and user conversion.",
       ctaStart: "Start a Project",
       ctaCv: "Download CV",
       howIBuild: "Engineering Philosophy",
@@ -73,6 +73,11 @@ export const translations = {
           title: "Buenos Aires Móvil — OOH Advertising Platform",
           kicker: "Featured client website",
           description: "Complete website redesign for a Buenos Aires outdoor advertising company. Built a premium dark-mode marketing site with an interactive Leaflet coverage map, route explorer, service showcases, client testimonials, and a conversion-optimized contact flow — transforming their digital presence into a lead-generation engine.",
+        },
+        drluciano: {
+          title: "Dr. Luciano Ruggeri — Dental Healthcare Platform",
+          kicker: "Live client website",
+          description: "High-trust digital experience and booking platform for a premier dental specialist in Palermo, Buenos Aires. Engineered with refined typography, responsive appointment scheduling flows, direct WhatsApp integration, and clinical service showcases designed for patient acquisition and reputation.",
         },
         aiBuilder: {
           title: "AI Website Builder Pro",
@@ -156,7 +161,7 @@ export const translations = {
       eyebrow: "Sobre Rodrigo",
       title: "Construyendo aplicaciones web modernas con precisión técnica.",
       desc1: "Desarrollo aplicaciones web de alto rendimiento, plataformas de clientes responsivas y servicios backend escalables. Mi enfoque está en brindar experiencias digitales pulidas con arquitectura limpia, UI/UX fluida y APIs confiables.",
-      desc2: "Mi stack principal se centra en React, TypeScript, Node.js, Express, MongoDB, TailwindCSS y despliegues en la nube. Ya sea desarrollando sitios de clientes a medida como Buenos Aires Móvil o plataformas completas, priorizo la velocidad, mantenibilidad y conversión.",
+      desc2: "Mi stack principal se centra en React, TypeScript, Node.js, Express, MongoDB, TailwindCSS y despliegues en la nube. Ya sea desarrollando sitios de clientes a medida como Buenos Aires Móvil y Dr. Luciano Ruggeri o plataformas completas, priorizo la velocidad, mantenibilidad y conversión.",
       ctaStart: "Iniciar un Proyecto",
       ctaCv: "Descargar CV",
       howIBuild: "Filosofía de Ingeniería",
@@ -208,6 +213,11 @@ export const translations = {
           title: "Buenos Aires Móvil — Plataforma Publicitaria Vía Pública",
           kicker: "Sitio web de cliente destacado",
           description: "Rediseño completo del sitio web para una empresa de publicidad en vía pública de Buenos Aires. Sitio de marketing en modo oscuro con mapa interactivo de cobertura con Leaflet, explorador de rutas, catálogo de servicios, testimonios y flujo de contacto optimizado.",
+        },
+        drluciano: {
+          title: "Dr. Luciano Ruggeri — Odontología Estética & Restauradora",
+          kicker: "Sitio web para cliente en vivo",
+          description: "Plataforma web y experiencia digital de alta confianza para un consultorio odontológico en Palermo, Buenos Aires. Diseñada con tipografía refinada, flujos directos de reserva de turnos, integración con WhatsApp y catálogo de tratamientos enfocado en captación y reputación.",
         },
         aiBuilder: {
           title: "AI Website Builder Pro",

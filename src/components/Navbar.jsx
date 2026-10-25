@@ -111,22 +111,19 @@ export const NavBar = () => {
           </span>
         </a>
 
-        <div className="hidden items-center gap-8 md:flex">
+        <div className="hidden items-center gap-2 md:flex rounded-full border border-border/40 bg-secondary/30 p-1 backdrop-blur-md">
           {navItems.map((item) => (
             <a
               key={item.href}
               href={item.href}
               className={cn(
-                "text-sm font-semibold transition-colors duration-200 hover:text-primary relative py-1",
+                "text-sm font-semibold transition-all duration-300 relative px-3.5 py-1 rounded-full",
                 activeSection === item.href
-                  ? "text-primary"
-                  : "text-muted-foreground"
+                  ? "text-primary bg-primary/15 shadow-sm shadow-primary/10"
+                  : "text-muted-foreground hover:text-foreground hover:bg-background/60"
               )}
             >
               {getNavName(item.name)}
-              {activeSection === item.href && (
-                <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full" />
-              )}
             </a>
           ))}
         </div>

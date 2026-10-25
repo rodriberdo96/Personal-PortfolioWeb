@@ -1,4 +1,5 @@
 import { AboutSection } from "../components/AboutSection";
+import { AppleFloatingDock } from "../components/AppleFloatingDock";
 import { ContactSection } from "../components/ContactSection";
 import { Footer } from "../components/Footer";
 import { GlowCursor } from "../components/GlowCursor";
@@ -24,6 +25,7 @@ export const Home = () => {
       </main>
 
       <Footer />
+      <AppleFloatingDock />
     </div>
   );
 };
