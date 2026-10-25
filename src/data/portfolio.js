@@ -15,7 +15,7 @@ export const profile = {
   email: "rodriberdomas@gmail.com",
   phone: "+54 9 11 3445-0448",
   phoneHref: "https://wa.me/5491134450448?text=Hi%20Rodrigo,%20saw%20your%20portfolio%20and%20wanted%20to%20reach%20out!",
-  cv: "/Rodrigo Berdomas CV English (2).pdf",
+  cv: "/Rodrigo Berdomas CV English.pdf",
   avatar: "/FotoPersonal.jpeg",
   linkedin: "https://www.linkedin.com/in/rodrigoberdomas/",
   github: "https://github.com/rodriberdo96",
